@@ -1,0 +1,40 @@
+.Login , .Register{
+    text-align: center;
+    border: 1px solid black;
+    margin : auto;
+    background-color : #181515;
+    max-width: 600px;
+    border-radius: 10% 
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #842323;
+}
+
+input {
+    display: block;
+    margin: 20px auto 20px auto;
+    border-radius: 10px;
+    background-color : #C4C4C4;
+    width: 60%;
+    text-align: center;
+}
+
+input:hover{
+    border-color: #4D667D;
+}
+
+form{
+    border-radius: 10px;
+    padding: 50px 35px;
+}
+
+
+button {
+    background-color: #540E0E;
+    color : black ;
+    width: 125px;
+    border-radius: 100%;
+    margin-top: 20px;
+}

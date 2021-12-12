@@ -1,0 +1,20 @@
+.Navbar{
+    display: flex;
+    justify-content: space-around;
+    background-color: #1C1212;
+    margin-bottom: 100px;
+    position: sticky;
+}
+
+
+a {
+    text-decoration: none;
+    color : #4D667D;
+}
+
+
+.Navbar a:last-child{
+    padding : 20px 
+}
+
+

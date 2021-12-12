@@ -1,6 +1,6 @@
 .Navbar{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #1C1212;
     margin-bottom: 100px;
     position: sticky;
@@ -12,9 +12,17 @@ a {
     color : #4D667D;
 }
 
+a:first-child{
+    font-size: 36px;
+}
 
-.Navbar a:last-child{
-    padding : 20px 
+
+.Navbar div a{
+    padding : 20px ;
+    font-size: 20px;
+    vertical-align: bottom;
+    position: relative;
+    top: 20%;
 }
 
 

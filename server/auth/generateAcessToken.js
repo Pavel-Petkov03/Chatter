@@ -9,7 +9,7 @@ function verifyToken(req , res , next){
                 message : "Not authorized"
             })
         }
-        jwt.verify(token , env.ACCESS_TOKEN_KEY)
+        jwt.verify(token , env.process.ACCESS_TOKEN_KEY)
     }catch(er){
         return res.json({
             message : "Not authorized"

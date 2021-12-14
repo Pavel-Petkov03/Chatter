@@ -1,40 +1,59 @@
-.Login , .Register{
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+body {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+}
+
+.Login , .Register {
+  width: 360px;
+  padding: 4% 0 0;
+  margin: auto;
+  font-family: 'Comfortaa', cursive;
+  background: #FFFFFF;
+}
+
+.form {
+  border-radius: 10px;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+}
+
+.form input {
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: 'Comfortaa', cursive;
+}
+
+.form input:focus {
+  background: #dbdbdb;
+}
+
+.form button {
+  font-family: 'Comfortaa' cursive;
+  text-transform: uppercase;
+  background: #4b6cb7;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form button:active {
+  background: #395591;
+}
+
+h1{
     text-align: center;
-    border: 1px solid black;
-    margin : auto;
-    background-color : #181515;
-    max-width: 600px;
-    border-radius: 10% 
-}
-
-h1 {
-    margin-bottom: 20px;
-    color: #842323;
-}
-
-input {
-    display: block;
-    margin: 20px auto 20px auto;
-    border-radius: 10px;
-    background-color : #C4C4C4;
-    width: 60%;
-    text-align: center;
-}
-
-input:hover{
-    border-color: #4D667D;
-}
-
-form{
-    border-radius: 10px;
-    padding: 50px 35px;
-}
-
-
-button {
-    background-color: #540E0E;
-    color : black ;
-    width: 125px;
-    border-radius: 100%;
-    margin-top: 20px;
 }

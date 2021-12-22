@@ -1,7 +1,7 @@
 import "../styles/LoginAndRegister.css"
-export default function Login(){
+export default function Register(){
     return (
-        <div className="Login">
+        <div className="Register">
             <h1>Register</h1>
             <form action="" className="form">
                 <input type="text" placeholder="Username" />
@@ -10,6 +10,6 @@ export default function Login(){
                 <input type="text" placeholder="Confirm Password"/>
                <button>Submit</button>
             </form>
-        </div>
+        </div> 
     )
 }

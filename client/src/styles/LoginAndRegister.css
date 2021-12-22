@@ -8,7 +8,6 @@ body {
   width: 360px;
   padding: 4% 0 0;
   margin: auto;
-  font-family: 'Comfortaa', cursive;
   background: #FFFFFF;
 }
 
@@ -30,7 +29,6 @@ body {
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
-  font-family: 'Comfortaa', cursive;
 }
 
 .form input:focus {
@@ -38,7 +36,6 @@ body {
 }
 
 .form button {
-  font-family: 'Comfortaa' cursive;
   text-transform: uppercase;
   background: #4b6cb7;
   width: 100%;

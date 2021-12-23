@@ -1,35 +1,23 @@
 import "../styles/Post.css"
-import { useState, useEffect } from "react"
+import { useState, useRef } from "react"
 import {FaRegCommentAlt, FaHeart, FaRegHeart, FaArrowCircleRight, FaRegLaughBeam} from "react-icons/fa"
 import Picker from "emoji-picker-react"
+import Comment from "../components/Comment.jsx"
 export default function Post({
     userImage, username, postImg , content, 
 }){
+    //TODO use redux for state management(this will be desided)
     const [isCommentClicked, setIsCommentClicked] = useState(false)
     const [isGray , setIsGray] = useState(false)
     // this will be setted by props
     const [liked , setIsLiked] = useState(false)
     const [isOpenEmojiClicked , setIsOpenEmojiClicked] = useState(false)
-    const [text, setText] = useState("")
+    const postCommentArea = useRef(null)
 
 
     function onEmojiClick(event, emojiObject){
-        setText(str => str += emojiObject.emoji)
+        postCommentArea.current.value += emojiObject.emoji
     }
-    function onKeyPress(ev){
-        const keyPressed = ev.nativeEvent.key
-        if(keyPressed !== "Enter"){
-            setText(str => str += ev.nativeEvent.key)
-        }
-    }
-
-    function onKeyDown(ev){
-        if(ev.key === "Backspace"){
-            setText(str => [...str].slice(0,-1).join(""))
-        }
-    }
-
-
 
     let Icon
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
@@ -48,7 +36,6 @@ export default function Post({
                             setIsCommentClicked(last => !last)
                             setIsGray(gray => !gray)
                             setIsOpenEmojiClicked(bool => false)
-                            setText(str => "")
                         }} />
                         {Icon = liked ? FaHeart : FaRegHeart}
                         <Icon color={liked ? "red" : "black"} onClick={() => setIsLiked(l => !l )}/> 
@@ -58,15 +45,15 @@ export default function Post({
             {isOpenEmojiClicked ? <Picker  onEmojiClick={onEmojiClick} pickerStyle={{position : "absolute",  margin : "60px 270px"}} /> : null}
             {isCommentClicked ? <>
             <div className="comment-create-section">
-                <textarea className="comment-create" onKeyPress={onKeyPress} value={text} onKeyDown={onKeyDown}/>
+                <textarea ref={postCommentArea} className="comment-create"/>
                 <div className="post-tasks">
                     <FaRegLaughBeam  onClick={() => setIsOpenEmojiClicked(e => !e)}/>
                     <FaArrowCircleRight className="post-comment"/>
                 </div>
                 
             </div>
-                {/* todo improve post comment design */}
             </> : null}
+                {<Comment content={"bASI"} ownerName={"PAVKATA"}></Comment>}
         </article>
     )
 }

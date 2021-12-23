@@ -10,6 +10,27 @@ export default function Post({
     // this will be setted by props
     const [liked , setIsLiked] = useState(false)
     const [isOpenEmojiClicked , setIsOpenEmojiClicked] = useState(false)
+    const [text, setText] = useState("")
+
+
+    function onEmojiClick(event, emojiObject){
+        setText(str => str += emojiObject.emoji)
+    }
+    function onKeyPress(ev){
+        const keyPressed = ev.nativeEvent.key
+        if(keyPressed !== "Enter"){
+            setText(str => str += ev.nativeEvent.key)
+        }
+    }
+
+    function onKeyDown(ev){
+        if(ev.key === "Backspace"){
+            setText(str => [...str].slice(0,-1).join(""))
+        }
+    }
+
+
+
     let Icon
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
     return (
@@ -27,17 +48,17 @@ export default function Post({
                             setIsCommentClicked(last => !last)
                             setIsGray(gray => !gray)
                             setIsOpenEmojiClicked(bool => false)
+                            setText(str => "")
                         }} />
                         {Icon = liked ? FaHeart : FaRegHeart}
                         <Icon color={liked ? "red" : "black"} onClick={() => setIsLiked(l => !l )}/> 
                     </div>
                  </div>
             </div>
-            {isOpenEmojiClicked ? <Picker pickerStyle={{position : "absolute",  margin : "60px 270px"}} /> : null}
+            {isOpenEmojiClicked ? <Picker  onEmojiClick={onEmojiClick} pickerStyle={{position : "absolute",  margin : "60px 270px"}} /> : null}
             {isCommentClicked ? <>
             <div className="comment-create-section">
-                <textarea className="comment-create"/>
-                
+                <textarea className="comment-create" onKeyPress={onKeyPress} value={text} onKeyDown={onKeyDown}/>
                 <div className="post-tasks">
                     <FaRegLaughBeam  onClick={() => setIsOpenEmojiClicked(e => !e)}/>
                     <FaArrowCircleRight className="post-comment"/>

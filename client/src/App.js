@@ -24,8 +24,9 @@ const obj = {
     postImg : "https://play-lh.googleusercontent.com/FCzgw2YD80puDhwEAOsjYCZcbetxOu5CRx7VzEVJ0z1C_FjyHqOefGqkrijyLD_cHbx1",
     content : "This is very interesting"
   },
-
 }
+
+
 function App() {
   return (
     <div className="App">

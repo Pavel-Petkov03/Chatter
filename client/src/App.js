@@ -8,19 +8,17 @@ import Post from "./components/Post";
 const obj = {
   "Pavel Petkov" : {
     username : "Pavel Petkov",
-    userImg : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHksLYKdd696lVE2GXY5P4AUdWPlFCuiyD1g&usqp=CAU",
-    postImg : "https://play-lh.googleusercontent.com/FCzgw2YD80puDhwEAOsjYCZcbetxOu5CRx7VzEVJ0z1C_FjyHqOefGqkrijyLD_cHbx1",
+    postImg : "https://images.ctfassets.net/u0haasspfa6q/1uGsqwmSpOUN3ITzZ0akhp/7582e3072d2da76fdc3689527f808268/girl-in-the-sunset-on-some-rocks-on-the-water",
     content : "This is very interesting"
   },
   "Pavel Petkov1" : {
     username : "Pavel Petkove23",
-    userImg : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHksLYKdd696lVE2GXY5P4AUdWPlFCuiyD1g&usqp=CAU",
+    userImage : "https://images.ctfassets.net/u0haasspfa6q/1uGsqwmSpOUN3ITzZ0akhp/7582e3072d2da76fdc3689527f808268/girl-in-the-sunset-on-some-rocks-on-the-water",
     postImg : "https://play-lh.googleusercontent.com/FCzgw2YD80puDhwEAOsjYCZcbetxOu5CRx7VzEVJ0z1C_FjyHqOefGqkrijyLD_cHbx1",
     content : "This is very interesting"
   },
   "Pavel Petkov2" : {
     username : "Pavel Petkov1",
-    userImg : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHksLYKdd696lVE2GXY5P4AUdWPlFCuiyD1g&usqp=CAU",
     postImg : "https://play-lh.googleusercontent.com/FCzgw2YD80puDhwEAOsjYCZcbetxOu5CRx7VzEVJ0z1C_FjyHqOefGqkrijyLD_cHbx1",
     content : "This is very interesting"
   },
@@ -38,7 +36,6 @@ function App() {
       <div className="post-placeholder">
         {Object.values(obj).map(Post)}
       </div>
-      
     </div>
   );
 }

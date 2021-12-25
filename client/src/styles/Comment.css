@@ -1,6 +1,6 @@
 .comment-object {
-display: flex;
-  justify-content: flex-start;
+  display: flex;
+  justify-content: space-between;
   font-size: 90%;
   line-height: 1.7em;
   margin-bottom: 2em;
@@ -14,7 +14,25 @@ display: flex;
     border-radius: 50%;
 }
 
-.comment-text {
-    width: 250px;
-    padding-left: 1em;
+.comment-text * {
+  text-align: left;
+  font-size: 10px;
+}
+
+
+.comment-let-content * {
+  margin: 0;
+  font-size: 16px;
+}
+
+
+.comment-profile-info {
+  display: flex;
+  align-items: center;
+  border : 1px solid black;
+  font-size: 30px;
+  /* going to improve border looks */
+}
+.comment-profile-info * {
+  font-size: 10px;
 }

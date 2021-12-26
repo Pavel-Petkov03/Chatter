@@ -1,4 +1,4 @@
-import {mongoose} from "../config/mongoose.js"
+const {mongoose} = require("../config/mongoose.js")
 const Schema = mongoose.Schema
 
 const postSchema = new Schema({
@@ -11,4 +11,4 @@ const postSchema = new Schema({
 
 
 
-module.exports = mongoose.model('User', postSchema);
+module.exports = mongoose.model('Post', postSchema);

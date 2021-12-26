@@ -6,6 +6,7 @@ const userSchema = new Schema({
   username: String,
   password: String,
   profilePicture : String // this will be changed to some cloud like firebase or cloudinary
+
 });
 
 userSchema.index(

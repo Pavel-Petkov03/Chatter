@@ -1,8 +1,8 @@
 const bcrypt  = require("bcrypt")
 
-import User from "../models/user.js"
+const User = require("../models/user.js")
 
-
+// the validation will be parsed to function [utils will be created]
 export default async function register(req , res) {
     const {password , email , username , confirmPassword} = req.body
     if(!email){

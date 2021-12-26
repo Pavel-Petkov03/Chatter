@@ -1,6 +1,6 @@
 const bcrypt  = require("bcrypt")
 
-import User from "../models/user.js"
+import User from require("../models/user.js")
 
 export default async function login(req , res){
         const {email , password} = req.body
@@ -15,7 +15,7 @@ export default async function login(req , res){
                 message : "Incorrect password"
             })
         }
-} 
+}
 
 
 

@@ -1,20 +1,20 @@
 import "../styles/Comment.css"
 export default function Comment({
-    ownerId ,  content , ownerImage , ownerName
+    ownerId ,  content , ownerImage , ownerName, postedDate
 }){
     // TODO MAKE CSS FOR COMMENTS 
     return (
-        <li class="comment-object">
-        <div class="comment-text">
+        <section class="comment-placeholder" key={ownerId}>
+        <article class="comment-text">
           <div className="comment-let-content">
             <div className="comment-profile-info">
-              <img class="comment-profile-pick" src="https://pbs.twimg.com/profile_images/675393797799460865/N58WAkoH.jpg" alt="profile picture"/>
-              <h2 class="username">Obi Wan Kenobi </h2>
+              <img class="comment-profile-pick" src={ownerImage} alt="profile picture"/>
+              <h2 class="username">{ownerName}</h2>
             </div>
-          <p class="comment">Think Anakin might be just a bit evil </p>
+          <p class="comment">{content}</p>
           </div>
-        </div>
-        <span class="muted">&#183; 3 hours ago</span>
-      </li>
+        </article>
+        <span >{postedDate}</span>
+      </section>
     )
 }

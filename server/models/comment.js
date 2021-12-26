@@ -1,4 +1,4 @@
-import {mongoose} from "../config/mongoose.js"
+const mongoose = require("../config/mongoose.js")
 const Schema = mongoose.Schema
 
 const commentSchema = new Schema({

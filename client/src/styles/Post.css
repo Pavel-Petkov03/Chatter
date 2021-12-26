@@ -18,6 +18,8 @@
 .name-row-img {
     max-width: 14%;
     max-height: 15%;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 .name-row-name{

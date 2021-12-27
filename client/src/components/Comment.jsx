@@ -4,7 +4,8 @@ export default function Comment({
   
     ownerId ,  content , ownerImage , ownerName, postedDate, likesCount
 }){
-    // TODO MAKE CSS FOR COMMENTS 
+    // TODO MAKE CSS FOR COMMENTS
+    likesCount = likesCount ? likesCount : 0
     return (
         <section class="comment-placeholder" key={ownerId}>
             <div className="comment-profile-info">
@@ -17,8 +18,8 @@ export default function Comment({
               </div>
               <div className="comment-second-row">
                 <p class="comment-content">{content}</p>
-                <div>
-                  <p>Likes: {likesCount}</p>
+                <div className="comment-like-div">
+                  <p className="comment-likes-count">{`Likes: ${likesCount}`}</p>
                   <CustomHeart likedBool={false}></CustomHeart>
                 </div>
               </div>

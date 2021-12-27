@@ -61,3 +61,18 @@
   line-height: 1rem;
   text-align: left;
 }
+
+.comment-second-row {
+  display: flex;
+}
+
+.comment-like-div {
+  display: inline-block;
+  width: 10rem;
+  align-self: end
+}
+
+.comment-likes-count {
+  display: inline-block;
+  margin-right: 10px;
+}

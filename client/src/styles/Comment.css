@@ -1,6 +1,4 @@
 .comment-placeholder {
-  display: flex;
-  justify-content: space-between;
   font-size: 90%;
   line-height: 1.7em;
   margin-bottom: 2em;
@@ -29,12 +27,12 @@
 
 
 .comment-profile-info {
-  display: flex;
-  align-items: center;
   border : 1px solid black;
   width: 8rem;
   border-radius: 5%;
   background-color: whitesmoke;
+  width: 100%;
+  justify-content: space;
   /* going to improve border looks */
 }
 .comment-profile-info * {
@@ -43,4 +41,23 @@
 
 .username {
   font-weight: normal;
+}
+
+.comment-profile-info-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-first-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.comment-content {
+  font-family: "Cormorant";
+  width: 20rem;
+  margin-left: 2em;
+  line-height: 1rem;
+  text-align: left;
 }

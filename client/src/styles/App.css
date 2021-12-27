@@ -21,7 +21,7 @@
 }
 
 body {
-    margin : 0
+    margin : 0;
 }
 
 .post-placeholder {
@@ -30,4 +30,18 @@ body {
     width: 550px;
     padding: 2% 0 0;
     margin: auto auto 50px auto;
+}
+
+#root {
+    overflow: hidden;
+}
+
+@media  screen and (max-width:  500px) {
+    .post-placeholder {
+        width: auto;
+    }
+
+    .comment-content {
+        max-width : 12rem
+    }
 }

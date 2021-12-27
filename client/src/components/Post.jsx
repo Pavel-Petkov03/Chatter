@@ -3,6 +3,7 @@ import { useState, useRef } from "react"
 import {FaRegCommentAlt, FaHeart, FaRegHeart, FaArrowCircleRight, FaRegLaughBeam} from "react-icons/fa"
 import Picker from "emoji-picker-react"
 import Comment from "../components/Comment.jsx"
+import CustomHeart from "./CustomHeart"
 export default function Post({
     userImage, username, postImg , content, 
 }){
@@ -10,7 +11,6 @@ export default function Post({
     const [isCommentClicked, setIsCommentClicked] = useState(false)
     const [isGray , setIsGray] = useState(false)
     // this will be setted by props
-    const [liked , setIsLiked] = useState(false)
     const [isOpenEmojiClicked , setIsOpenEmojiClicked] = useState(false)
     const postCommentArea = useRef(null)
 
@@ -37,8 +37,7 @@ export default function Post({
                             setIsGray(gray => !gray)
                             setIsOpenEmojiClicked(bool => false)
                         }} />
-                        {Icon = liked ? FaHeart : FaRegHeart}
-                        <Icon color={liked ? "red" : "black"} onClick={() => setIsLiked(l => !l )}/> 
+                        <CustomHeart likedBool={false}></CustomHeart>
                     </div>
                  </div>
             </div>
@@ -54,8 +53,14 @@ export default function Post({
             </div>
             </> : null}
                 {<Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>}
+                {<Comment content={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam labore excepturi quaerat sed reprehenderit. Ex rerum possimus minima, quasi esse ducimus eos perferendis aperiam magni ipsam corrupti nemo, cum inventore.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>}
         </article>
     )
 }
+
+
+
+
+
 
 

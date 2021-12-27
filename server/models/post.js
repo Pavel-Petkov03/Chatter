@@ -4,9 +4,9 @@ const Schema = mongoose.Schema
 const postSchema = new Schema({
     content : String,
     likesCount : {type : Number, default : 0},
-    userImage : [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    userImage : { type: String, ref: 'User' },
     postImage : String,// these two images will be saved in firebase or cloudinary later
-    creationDate : Date 
+    creationDate : {type : Date , default : Date.now()}
 });
 
 

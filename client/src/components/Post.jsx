@@ -22,7 +22,6 @@ export default function Post({
 
     //TODO use redux for state management(this will be desided)
     const [isCommentClicked, setIsCommentClicked] = useState(false)
-    const [commentsCurrentCounter , setCommentsCurrentCounter] = useState(2)
     const [commentsArray , setCommentsArray] = useState(comments.slice(0,2))
     const [isOpenEmojiClicked , setIsOpenEmojiClicked] = useState(false)
     const postCommentArea = useRef(null)
@@ -30,20 +29,17 @@ export default function Post({
         postCommentArea.current.value += emojiObject.emoji
     }
 
-
-    function downClick(){
-        if(commentsArray.length >= 2) {
-            setCommentsCurrentCounter(l => l+1)
-            console.log(commentsCurrentCounter)
-            setCommentsArray(comments.slice(0, commentsCurrentCounter*2))
-        }
+    function upClick(){
+        setTimeout(() => {
+            setCommentsArray(() => comments.slice(0, parseInt(commentsArray.length - 2)))
+        }, 100)
+        
     }
 
-    function upClick(){
-        if(2 <  2 * commentsCurrentCounter) {
-            setCommentsCurrentCounter(l => l -1 )
-            setCommentsArray(comments.slice(0, commentsCurrentCounter*2))
-        }
+    function downClick(){
+        setTimeout(() => {
+            setCommentsArray(() => comments.slice(0, parseInt(commentsArray.length + 2)))
+        }, 100)
     }
 
 

@@ -96,5 +96,3 @@ export default function Post({
         </article>
     )
 }
-
-

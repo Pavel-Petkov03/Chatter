@@ -10,20 +10,29 @@ import {
 import Picker from "emoji-picker-react"
 import Comment from "../components/Comment.jsx"
 import CustomHeart from "./CustomHeart"
+
+
+const commentPaginationCount = 2
+
+
 export default function Post({
     userImage, username, postImg , content, postId
 }){
+    // this data will be parsed from the server it is user only for debugging;
     const comments = [
     <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
     <Comment content={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam labore excepturi quaerat sed reprehenderit. Ex rerum possimus minima, quasi esse ducimus eos perferendis aperiam magni ipsam corrupti nemo, cum inventore.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
     <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
-    <Comment content={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam labore excepturi quaerat sed reprehenderit. Ex rerum possimus minima, quasi esse ducimus eos perferendis aperiam magni ipsam corrupti nemo, cum inventore.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>
+    // <Comment content={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam labore excepturi quaerat sed reprehenderit. Ex rerum possimus minima, quasi esse ducimus eos perferendis aperiam magni ipsam corrupti nemo, cum inventore.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>
     ]
 
     //TODO use redux for state management(this will be desided)
     const [isCommentClicked, setIsCommentClicked] = useState(false)
-    const [commentsArray , setCommentsArray] = useState(comments.slice(0,2))
+    const [commentsArray , setCommentsArray] = useState(comments.slice(0,commentPaginationCount))
     const [isOpenEmojiClicked , setIsOpenEmojiClicked] = useState(false)
+    const [displayShowDown , setDisplayShowDown] = useState(comments.length > commentPaginationCount)
+    const [displayShowUp , setDisplayShowUp] = useState(false)
+    const [commentsCountLeft , setCommentsCountLeft] = useState(comments.length - commentsArray.length)
     const postCommentArea = useRef(null)
     function onEmojiClick(event, emojiObject){
         postCommentArea.current.value += emojiObject.emoji
@@ -31,14 +40,15 @@ export default function Post({
 
     function upClick(){
         setTimeout(() => {
-            setCommentsArray(() => comments.slice(0, parseInt(commentsArray.length - 2)))
+            setCommentsArray(() => comments.slice(0, commentsArray.length - commentPaginationCount <= 0))
+            setCommentsCountLeft(() => comments.length - commentsArray.length)
         }, 100)
-        
     }
 
     function downClick(){
         setTimeout(() => {
-            setCommentsArray(() => comments.slice(0, parseInt(commentsArray.length + 2)))
+            setCommentsArray(() => comments.slice(0, commentsArray.length + commentPaginationCount))
+            setCommentsCountLeft(() => comments.length - commentsArray.length)
         }, 100)
     }
 
@@ -73,24 +83,18 @@ export default function Post({
                 </div>
             </div>
             </> : null}
-            {commentsArray}
-            <div className="arrows">
-                <FaArrowDown onClick={downClick}/>
-                <FaArrowUp onClick={upClick}/>
+            <section className="comment-section">
+                {commentsArray}
+                <div className="arrows">
+                <div className="arrows-icons">
+                    <FaArrowDown onClick={downClick}/>
+                    <FaArrowUp onClick={upClick}/>
+                </div>
+                <p className="comments-left">{commentsCountLeft} comments left</p>
             </div>
+            </section>
         </article>
     )
 }
-
-// slice 2
-// show more means times counter ++ 
-// show less means times counter --
-// display comments.slice(0, 2*counter) // this will be in state clause
-
-
-
-
-
-
 
 

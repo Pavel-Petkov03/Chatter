@@ -5,7 +5,6 @@
   padding: 0 2em 0 .5em;
   box-sizing: border-box;
   margin-bottom: 0;
-  background-color: rgba(79, 65, 65, 0.2);
 }
 
 .comment-profile-pick {
@@ -75,4 +74,24 @@
 .comment-likes-count {
   display: inline-block;
   margin-right: 10px;
+}
+
+.arrows  * {
+  font-size: 10px;
+}
+
+
+.arrows-icons {
+  color : #424954;
+}
+
+.arrows {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comments-left {
+  color : #9da0a6;
+  padding-right: 3em;
+  margin : 0 
 }

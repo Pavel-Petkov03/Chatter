@@ -68,3 +68,7 @@
 .post-tasks * {
     font-size: 20px;
 }
+
+.comment-section {
+    background-color: rgba(79, 65, 65, 0.2);
+}

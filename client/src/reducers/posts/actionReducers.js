@@ -5,16 +5,24 @@ import {
     DELETE_POST_SUCCESS, 
     EDIT_POST_FAILURE, 
     EDIT_POST_SUCCESS,
+    EMOJI_CLICK,
     LIKE_POST_FAILURE,
     LIKE_POST_SUCCESS,
     SAVE_POST_FAILURE,
     SAVE_POST_SUCCESS, 
+    CLICK_COMMENT,
+    SHOW_DOWN,
+    SHOW_UP,
+    EDIT_POST
 } 
 from "./actionTypes.js"
 
 const commentPaginationCount =  2
 
-function postReducer(state , action){
+
+
+
+export function postReducer(state , action){
     switch (action.type){
         // if correct api call the state is reseted
         case CREATE_COMMENT_SUCCESS :
@@ -47,13 +55,19 @@ function postReducer(state , action){
         case CLICK_COMMENT:
             return {
                 ...state,
-                clickedComment : true
+                clickedComment : !state.clickedComment
+            }
+        
+        case EMOJI_CLICK:
+            return {
+                ...state,
+                isEmojiFieldClicked : !state.isEmojiFieldClicked
             }
         
         case LIKE_POST_SUCCESS :
             return {
                 ...state,
-                isLiked : true
+                isLiked : !state.isLiked
             }
         case SHOW_DOWN : 
             return {
@@ -65,6 +79,7 @@ function postReducer(state , action){
                 ...state ,
                 ...showDownAndUpChecker(state.commentsArray , action.allComments , "up")
             }
+
     }
 }
 
@@ -84,6 +99,7 @@ function showDownAndUpChecker(stateComments , allComments , upOrDown){
 
     if(commentsArray.length <= 2){
         displayShowUp = false
+        console.log("I am here")
     }else if(commentsArray.length === allComments.length){
         displayShowDown = false
     }
@@ -91,20 +107,6 @@ function showDownAndUpChecker(stateComments , allComments , upOrDown){
         commentsArray,
         displayShowUp,
         displayShowDown,
-        commentsCountLeft : allComments - commentsArray
+        commentsCountLeft : allComments.length - commentsArray.length
     }
-}
-
-
-// this is initial state is post component // will be used later
-const initialState = {
-    editMode : false,
-    errorMessage : "",
-    clickedComment : false,
-    commentsArray : comments.slice(0,commentPaginationCount),
-    displayShowDown : comments.length > commentPaginationCount,
-    displayShowUp : false,
-    commentsCountLeft : comments.length - commentsArray.length,
-    isEmojiFieldClicked : false,
-    isLiked : false
 }

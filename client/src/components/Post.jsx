@@ -15,9 +15,20 @@ import CustomHeart from "./CustomHeart"
 const commentPaginationCount = 2
 
 
+
+
+
 export default function Post({
     userImage, username, postImg , content, postId
 }){
+    const initialState = {
+        clickedComment : false,
+        commentsArray : comments.slice(0,commentPaginationCount),
+        displayShowDown : comments.length > commentPaginationCount,
+        displayShowUp : false,
+        commentsCountLeft : comments.length - commentsArray.length,
+    }
+
     // this data will be parsed from the server it is user only for debugging;
     const comments = [
     <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
@@ -69,7 +80,7 @@ export default function Post({
                             setIsCommentClicked(last => !last)
                             setIsOpenEmojiClicked(bool => false)
                         }} />
-                        <CustomHeart likedBool={false}></CustomHeart>
+                        <CustomHeart likedBool={false}/>
                     </div>
                  </div>
             </div>

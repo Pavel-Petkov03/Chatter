@@ -1,5 +1,5 @@
 import "../styles/Post.css"
-import { useState, useRef, useReducer } from "react"
+import { useRef, useReducer } from "react"
 import {
     FaRegCommentAlt, 
     FaArrowCircleRight, 
@@ -37,6 +37,8 @@ export default function Post({
         isEmojiFieldClicked : false,
         isLiked : false
     }
+
+    
     const [state , dispatch] = useReducer( postReducer, initialState)
     const postCommentArea = useRef(null)
 
@@ -79,7 +81,7 @@ export default function Post({
                     {state.displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : comments})}/> : null}
                     {state.displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : comments})}/> : null}
                 </div>
-                <p className="comments-left">{state.commentsCountLeft} comments left</p>
+                {state.commentsCountLeft !== 0 ? <p className="comments-left">{state.commentsCountLeft} comments left</p> : null}
             </div>
             </section>
         </article>

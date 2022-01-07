@@ -90,7 +90,21 @@ function showDownAndUpChecker(stateComments , allComments , upOrDown){
     return {
         commentsArray,
         displayShowUp,
-        displayShowDown
+        displayShowDown,
+        commentsCountLeft : allComments - commentsArray
     }
 }
 
+
+// this is initial state is post component // will be used later
+const initialState = {
+    editMode : false,
+    errorMessage : "",
+    clickedComment : false,
+    commentsArray : comments.slice(0,commentPaginationCount),
+    displayShowDown : comments.length > commentPaginationCount,
+    displayShowUp : false,
+    commentsCountLeft : comments.length - commentsArray.length,
+    isEmojiFieldClicked : false,
+    isLiked : false
+}

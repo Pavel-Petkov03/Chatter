@@ -21,13 +21,7 @@ const commentPaginationCount = 2
 export default function Post({
     userImage, username, postImg , content, postId
 }){
-    const initialState = {
-        clickedComment : false,
-        commentsArray : comments.slice(0,commentPaginationCount),
-        displayShowDown : comments.length > commentPaginationCount,
-        displayShowUp : false,
-        commentsCountLeft : comments.length - commentsArray.length,
-    }
+    
 
     // this data will be parsed from the server it is user only for debugging;
     const comments = [

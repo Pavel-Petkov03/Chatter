@@ -7,20 +7,20 @@ export default function Comment({
     // TODO MAKE CSS FOR COMMENTS
     likesCount = likesCount ? likesCount : 0
     return (
-        <section class="comment-placeholder" key={ownerId}>
+        <section className="comment-placeholder" key={ownerId}>
             <div className="comment-profile-info">
               <div className="comment-first-row">
                 <div className="comment-profile-info-box">
-                  <img class="comment-profile-pick" src={ownerImage} alt="profile picture"/>
-                  <h2 class="username">{ownerName}</h2>
+                  <img className="comment-profile-pick" src={ownerImage} alt="profile picture"/>
+                  <h2 className="username">{ownerName}</h2>
                 </div>
                 <span >{postedDate}</span>
               </div>
               <div className="comment-second-row">
-                <p class="comment-content">{content}</p>
+                <p className="comment-content">{content}</p>
                 <div className="comment-like-div">
                   <p className="comment-likes-count">{`Likes: ${likesCount}`}</p>
-                  <CustomHeart likedBool={false}></CustomHeart>
+                  <CustomHeart likedBool={false}/>
                 </div>
               </div>
               

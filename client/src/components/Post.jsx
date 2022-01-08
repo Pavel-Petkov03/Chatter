@@ -14,11 +14,7 @@ import {
 import Picker from "emoji-picker-react"
 import Comment from "../components/Comment.jsx"
 import CustomHeart from "./CustomHeart"
-<<<<<<< HEAD
-import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS, LIKE_POST_FAILURE } from "../reducers/posts/actionTypes"
-=======
 import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS } from "../reducers/posts/actionTypes"
->>>>>>> f1f9024a4b8466f4274a86c1cdc5ef92bcca63bc
 import { postReducer } from "../reducers/posts/actionReducers"
 import Api from "../api/api"
 import { LIKE_COMMENT_SUCCESS } from "../reducers/comments/actionTypes"

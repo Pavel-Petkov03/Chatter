@@ -22,12 +22,13 @@ function verifyToken(req, res, next) {
   }
 
 
-// we will assign validators object to req 
+// we will assign validators array to req 
 function authenticateEntries(req , res , next) {
-    [...Object.entries(req.validators)].forEach(([ k , v]) => {
+    req.validators.forEach((v) => {
         try{
             if( typeof v === "function"){
-                v(req.body[k])
+                // the params to the functions will be assigned in previous middleware
+                v()
             }
         }catch(er){
             return res.status(er.status).json({

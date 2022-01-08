@@ -20,7 +20,7 @@ export default function Comment({
                 <p className="comment-content">{content}</p>
                 <div className="comment-like-div">
                   <p className="comment-likes-count">{`Likes: ${likesCount}`}</p>
-                  <CustomHeart likedBool={false}/>
+                  <CustomHeart likedBool={false} customClickEvent = {() => console.log(1)}/>
                 </div>
               </div>
               

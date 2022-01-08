@@ -22,13 +22,13 @@ export default class Api{
     }
 
 
-    errorHandler(endpoint, method, body , token, dispatchPayload){
+    async errorHandler(endpoint, method, body , token, dispatchPayload){
         const {successStateMessage , failureStateMessage, ...statePayload} = dispatchPayload
         try{
-            requestManager(endpoint , method, body , token)
+            await requestManager(endpoint , method, body , token)
             this.dispatch({type : successStateMessage , ...statePayload}) // state payload is if we want to parse some state
         }catch(er){
-           this.dispatch({type : failureStateMessage})
+           this.dispatch({type : failureStateMessage, errorMessage : er.message})
         }
     }
 }
@@ -66,5 +66,9 @@ async function generateRequest(endpoint , method, body , token){
     Object.assign(options , headers)
 
     const res = await fetch(endpoint , options)
+<<<<<<< HEAD
+    return await res.json() // my api will return status and errorMessage property every time
+=======
     const data = await res.json() // my api will return status and errorMessage property every time
+>>>>>>> f1f9024a4b8466f4274a86c1cdc5ef92bcca63bc
 }

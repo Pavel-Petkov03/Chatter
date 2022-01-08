@@ -21,4 +21,28 @@ async function login(req , res){
 }
 
 
+ async function register(req , res) {
+    const {password , email , username} = req.body
+    try{
+        const user = new User({
+            password : await bcrypt.hash(password, 10),
+            username,
+            email
+        })
+        await user.save()
+        return res.status(200).json({
+            message : "successfully logged in"
+        })
 
+    }catch(er){
+        return res.status(401).json({
+            errorMessage : "Not Authorised"
+        })
+    }
+    
+}
+
+
+export {
+    login , register
+}

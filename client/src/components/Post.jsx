@@ -10,8 +10,10 @@ import {
 import Picker from "emoji-picker-react"
 import Comment from "../components/Comment.jsx"
 import CustomHeart from "./CustomHeart"
-import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP } from "../reducers/posts/actionTypes"
+import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS } from "../reducers/posts/actionTypes"
 import { postReducer } from "../reducers/posts/actionReducers"
+import Api from "../api/api"
+import { LIKE_COMMENT_SUCCESS } from "../reducers/comments/actionTypes"
 
 
 const commentPaginationCount = 2
@@ -20,7 +22,10 @@ export default function Post({
 }){
     const comments = [
     <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
-    <Comment content={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam labore excepturi quaerat sed reprehenderit. Ex rerum possimus minima, quasi esse ducimus eos perferendis aperiam magni ipsam corrupti nemo, cum inventore.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
+    <Comment content={`e.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
+    <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
+    <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
+    <Comment content={`e.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
     <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
     // <Comment content={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam labore excepturi quaerat sed reprehenderit. Ex rerum possimus minima, quasi esse ducimus eos perferendis aperiam magni ipsam corrupti nemo, cum inventore.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>
     ]
@@ -38,10 +43,11 @@ export default function Post({
         isLiked : false
     }
 
-    
+
     const [state , dispatch] = useReducer( postReducer, initialState)
     const postCommentArea = useRef(null)
-
+    const api = new Api(dispatch)
+    
 
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
     return (
@@ -56,7 +62,7 @@ export default function Post({
                 <div className="post-footer">
                     <div className="post-buttons">
                         <FaRegCommentAlt color={state.clickedComment ? "gray" : "black"} onClick={() => dispatch({type : CLICK_COMMENT})} />
-                        <CustomHeart likedBool={state.isLiked}/>
+                        <CustomHeart likedBool={state.isLiked} customClickEvent={() => dispatch({type : LIKE_POST_SUCCESS})} />
                     </div>
                  </div>
             </div>

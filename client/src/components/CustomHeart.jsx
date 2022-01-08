@@ -1,10 +1,8 @@
-import { useState } from "react"
 import { FaHeart, FaRegHeart,} from "react-icons/fa"
-export default function({likedBool}){
+export default function({likedBool, customClickEvent}){
     let Icon
-    const [liked , setIsLiked] = useState(likedBool)
-    {Icon = liked ? FaHeart : FaRegHeart}
+    {Icon = likedBool ? FaHeart : FaRegHeart}
     return (
-        <Icon color={liked ? "red" : "black"} onClick={() => setIsLiked(l => !l )}/>
+        <Icon color={likedBool ? "red" : "black"} onClick={ () => customClickEvent()}/>
     )
 }

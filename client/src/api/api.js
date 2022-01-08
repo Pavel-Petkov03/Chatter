@@ -66,9 +66,5 @@ async function generateRequest(endpoint , method, body , token){
     Object.assign(options , headers)
 
     const res = await fetch(endpoint , options)
-<<<<<<< HEAD
-    return await res.json() // my api will return status and errorMessage property every time
-=======
     const data = await res.json() // my api will return status and errorMessage property every time
->>>>>>> f1f9024a4b8466f4274a86c1cdc5ef92bcca63bc
 }

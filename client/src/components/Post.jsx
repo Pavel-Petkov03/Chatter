@@ -1,5 +1,5 @@
 import "../styles/Post.css"
-import { useRef, useReducer } from "react"
+import { useRef, useReducer, useEffect } from "react"
 import {
     FaRegCommentAlt, 
     FaArrowCircleRight, 
@@ -10,7 +10,7 @@ import {
 import Picker from "emoji-picker-react"
 import Comment from "../components/Comment.jsx"
 import CustomHeart from "./CustomHeart"
-import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS } from "../reducers/posts/actionTypes"
+import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS, LIKE_POST_FAILURE } from "../reducers/posts/actionTypes"
 import { postReducer } from "../reducers/posts/actionReducers"
 import Api from "../api/api"
 import { LIKE_COMMENT_SUCCESS } from "../reducers/comments/actionTypes"
@@ -47,6 +47,10 @@ export default function Post({
     const [state , dispatch] = useReducer( postReducer, initialState)
     const postCommentArea = useRef(null)
     const api = new Api(dispatch)
+    useEffect(() => {
+        api.get("https://localhost:5000" , null, {successStateMessage : LIKE_POST_SUCCESS , failureStateMessage : LIKE_POST_FAILURE})
+    }, []);
+    {console.log(state)}
     
 
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"

@@ -21,9 +21,29 @@ const commentPaginationCount =  2
 
 
 
+const initialState = {
+    editMode : false,
+    errorMessage : "",
+    clickedComment : false,
+    commentsArray : null,
+    displayShowDown :  null,  // comments.length > commentPaginationCount,
+    displayShowUp : false,
+    commentsCountLeft :  null , //comments.length - commentsArray.length,
+    isEmojiFieldClicked : false,
+    isLiked : false
+}
 
-export function postReducer(state , action){
+
+
+export function postReducer(state = initialState, action){
     switch (action.type){
+        case START_APPLICATION:
+            return {
+                ...state,
+                commentsArray : action.comments,
+                displayShowDown : comments.length > commentPaginationCount,
+                commentsCountLeft : comments.length - commentsArray.length
+            }
         // if correct api call the state is reseted
         case CREATE_COMMENT_SUCCESS :
         case EDIT_POST_SUCCESS :
@@ -80,6 +100,8 @@ export function postReducer(state , action){
                 ...state ,
                 ...showDownAndUpChecker(state.commentsArray , action.allComments , "up")
             }
+        
+        default : return state
     }
 }
 

@@ -11,7 +11,6 @@ import Picker from "emoji-picker-react"
 import Comment from "../components/Comment.jsx"
 import CustomHeart from "./CustomHeart"
 import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS, LIKE_POST_FAILURE } from "../reducers/posts/actionTypes"
-import { postReducer } from "../reducers/posts/actionReducers"
 import Api from "../api/api"
 import { LIKE_COMMENT_SUCCESS } from "../reducers/comments/actionTypes"
 import CustomModal from "./Modals/CustomModal.jsx"
@@ -20,38 +19,7 @@ const commentPaginationCount = 2
 export default function Post({
     userImage, username, postImg , content, postId
 }){
-    const comments = [
-    <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
-    <Comment content={`e.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
-    <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
-    <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
-    <Comment content={`e.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
-    <Comment content={"bASI"} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>,
-    // <Comment content={`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam labore excepturi quaerat sed reprehenderit. Ex rerum possimus minima, quasi esse ducimus eos perferendis aperiam magni ipsam corrupti nemo, cum inventore.`} ownerName={"PAVKATA"} ownerImage={"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"}></Comment>
-    ]
-
-    const commentsArray  = comments.slice(0,commentPaginationCount)
-    const initialState = {
-        editMode : false,
-        errorMessage : "",
-        clickedComment : false,
-        commentsArray ,
-        displayShowDown : comments.length > commentPaginationCount,
-        displayShowUp : false,
-        commentsCountLeft : comments.length - commentsArray.length,
-        isEmojiFieldClicked : false,
-        isLiked : false
-    }
-
-
-    const [state , dispatch] = useReducer( postReducer, initialState)
     const postCommentArea = useRef(null)
-    const api = new Api(dispatch)
-
-    useEffect(() => {
-        api.get("https://localhost:5000" , null, {successStateMessage : LIKE_POST_SUCCESS , failureStateMessage : LIKE_POST_FAILURE})
-    }, []);
-    {console.log(state)}
     
 
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"

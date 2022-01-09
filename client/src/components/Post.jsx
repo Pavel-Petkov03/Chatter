@@ -14,7 +14,7 @@ import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS, LIKE
 import { postReducer } from "../reducers/posts/actionReducers"
 import Api from "../api/api"
 import { LIKE_COMMENT_SUCCESS } from "../reducers/comments/actionTypes"
-
+import CustomModal from "./Modals/CustomModal.jsx"
 
 const commentPaginationCount = 2
 export default function Post({
@@ -47,6 +47,7 @@ export default function Post({
     const [state , dispatch] = useReducer( postReducer, initialState)
     const postCommentArea = useRef(null)
     const api = new Api(dispatch)
+
     useEffect(() => {
         api.get("https://localhost:5000" , null, {successStateMessage : LIKE_POST_SUCCESS , failureStateMessage : LIKE_POST_FAILURE})
     }, []);

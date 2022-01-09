@@ -33,7 +33,8 @@ export function postReducer(state , action){
                 ...state , 
                 clickedComment : false , 
                 isEmojiFieldClicked : false,
-                editMode : false
+                editMode : false,
+                errorMessage : ""
             }
         
         case CREATE_COMMENT_FAILURE : 
@@ -79,7 +80,6 @@ export function postReducer(state , action){
                 ...state ,
                 ...showDownAndUpChecker(state.commentsArray , action.allComments , "up")
             }
-
     }
 }
 
@@ -99,7 +99,6 @@ function showDownAndUpChecker(stateComments , allComments , upOrDown){
 
     if(commentsArray.length <= 2){
         displayShowUp = false
-        console.log("I am here")
     }else if(commentsArray.length === allComments.length){
         displayShowDown = false
     }

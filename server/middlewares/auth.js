@@ -19,7 +19,7 @@ function verifyToken(req, res, next) {
       });
     }
     next();
-  }
+}
 
 
 // we will assign validators array to req 

@@ -20,18 +20,18 @@ function postComment(req , res){
 
 async function patchComment(req , res){
     const commentId = req.params.commentId
-    try{
-        const currentComment = await Comment.findOne({_id : commentId})
-        currentComment.content = req.body.content
-        await currentComment.save()
+    Comment.findOne(commentId , async (er , comment) => {
+        if(er){
+            return res.status(404).json({
+                errorMessage : "Comment not found"
+            })
+        }
+        comment.content = req.body.content
+        await comment.save()
         return res.status(200).json({
-            message : "Successfully patched comment"
+                message : "Successfully patched comment"
         })
-    }catch(er){
-        return res.status(404).json({
-            errorMessage : "Comment not found"
-        })
-    }
+    })
 }
 
 async function deleteComment(req, res) {

@@ -33,35 +33,32 @@ async function createPost (req, res)  {
 }
 
 
-async function patchPost (req , res)  {
-    let {newContent} = req.body
-    let postId = req.params.postId
-    try{
-        const currentPost = await Post.findOne({_id : postId})
-        if(currentPost !== null){
-            currentPost.content = newContent
-            await currentPost.save()
-            return res.status(204).json({
-                post : currentPost
-            })
+function patchPost (req , res)  {
+    Post.findOne(req.params.postId , (er , post) => {
+        if(er){
+            return res.status(404).json({errorMessage : er.message})
         }
-    }catch(er){
-        return res.status(404).json({errorMessage : "Something went wrong"})
-    }
+        let {newContent} = req.body
+        post.content = newContent
+        await post.save()
+        return res.status(204).json({
+            post
+        })
+    })
 }
 
-async function deletePost(req , res)  {
-    let postId = req.params.postId
-    try{
-        await Post.findOneAndDelete({_id : postId})
+function deletePost(req , res)  {
+    Post.findOneAndDelete(req.params.postId , (er , data) => {
+        if(er){
+            return res.status(404).json({
+                errorMessage : er.message
+            })
+        }
         return res.status(200).json({
-            message : "Deleted post successfully"
+            message : "Deleted post successfully",
+            data
         })
-    }catch(er){
-        return res.status(404).json({
-            errorMessage : er.message
-        })
-    }
+    })
 }
 
 module.exports = {

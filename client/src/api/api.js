@@ -27,8 +27,10 @@ export default class Api{
         try{
             const data = await requestManager(endpoint , method, body , token)
             this.dispatch({type : successStateMessage , ...statePayload}) // state payload is if we want to parse some state
+            console.log(data)
             return data
         }catch(er){
+            
            this.dispatch({type : failureStateMessage, errorMessage : er.message})
         }
     }
@@ -48,22 +50,21 @@ async function requestManager(endpoint ,method ,  body , token){
 // this function will look for error codes from the server
 async function generateRequest(endpoint , method, body , token){
     let options = {
-        method
+        method,
     }
 
     let headers  = {
-        "content-type" : "application/json",
+        "Content-Type" : "application/json",
     }
 
     if(body){
         Object.assign(options , body)
     }
     if(token){
-        Object.assign(headers , {"Authorization Bearer" : token})
+        Object.assign(headers , {"Authorization" : "Bearer " + token})
     }
 
-    Object.assign(options , headers)
-
+    Object.assign(options , {headers})
     const res = await fetch(endpoint , options)
     
     const data = await res.json() // my api will return status and errorMessage property every time

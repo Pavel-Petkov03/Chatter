@@ -5,7 +5,7 @@ const commentSchema = new Schema({
     ownerId : Schema.Types.ObjectId,
     content : String,
     ownerImg : {type : String , ref : "User"},
-    likesCount : {type : Number, default : 0},
+    likesArray : [{type : Schema.Types.ObjectId}],
 });
 
 

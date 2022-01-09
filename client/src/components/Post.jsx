@@ -10,17 +10,22 @@ import {
 import Picker from "emoji-picker-react"
 import Comment from "../components/Comment.jsx"
 import CustomHeart from "./CustomHeart"
-import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS, LIKE_POST_FAILURE } from "../reducers/posts/actionTypes"
+import { CLICK_COMMENT, EMOJI_CLICK, SHOW_DOWN, SHOW_UP, LIKE_POST_SUCCESS, LIKE_POST_FAILURE , START_APPLICATION} from "../reducers/posts/actionTypes"
 import Api from "../api/api"
 import { LIKE_COMMENT_SUCCESS } from "../reducers/comments/actionTypes"
 import CustomModal from "./Modals/CustomModal.jsx"
+import { useDispatch } from "react-redux"
+import store from "../reducers/rootReducer.js"
 
-const commentPaginationCount = 2
 export default function Post({
-    userImage, username, postImg , content, postId
+    userImage, username, postImg , content, postId, comments
 }){
     const postCommentArea = useRef(null)
-    
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch({type : START_APPLICATION, comments})
+    }, []);
 
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
     return (
@@ -34,17 +39,17 @@ export default function Post({
                 <img src={postImg} alt="" className="post-image"/>
                 <div className="post-footer">
                     <div className="post-buttons">
-                        <FaRegCommentAlt color={state.clickedComment ? "gray" : "black"} onClick={() => dispatch({type : CLICK_COMMENT})} />
-                        <CustomHeart likedBool={state.isLiked} customClickEvent={() => dispatch({type : LIKE_POST_SUCCESS})} />
+                        <FaRegCommentAlt color={store.getState().clickedComment ? "gray" : "black"} onClick={() => dispatch({type : CLICK_COMMENT})} />
+                        <CustomHeart likedBool={store.getState().isLiked} customClickEvent={() => dispatch({type : LIKE_POST_SUCCESS})} />
                     </div>
                  </div>
             </div>
-            {state.isEmojiFieldClicked ?
+            {store.getState().isEmojiFieldClicked ?
              <Picker 
                 onEmojiClick={(ev, emojiObject) => postCommentArea.current.value += emojiObject.emoji} 
                 pickerStyle={{position : "absolute",  margin : "60px 270px"}} /> 
              : null}
-            {state.clickedComment ? <>
+            {store.getState().clickedComment ? <>
             <div className="comment-create-section">
                 <textarea ref={postCommentArea} className="comment-create"/>
                 <div className="post-tasks">
@@ -54,13 +59,13 @@ export default function Post({
             </div>
             </> : null}
             <section className="comment-section">
-                {state.commentsArray}
+                {store.getState().commentsArray}
                 <div className="arrows">
                 <div className="arrows-icons">
-                    {state.displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : comments})}/> : null}
-                    {state.displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : comments})}/> : null}
+                    {store.getState().displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : comments})}/> : null}
+                    {store.getState().displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : comments})}/> : null}
                 </div>
-                {state.commentsCountLeft !== 0 ? <p className="comments-left">{state.commentsCountLeft} comments left</p> : null}
+                {store.getState().commentsCountLeft !== 0 ? <p className="comments-left">{store.getState().commentsCountLeft} comments left</p> : null}
             </div>
             </section>
         </article>

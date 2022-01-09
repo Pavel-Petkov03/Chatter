@@ -13,7 +13,8 @@ import {
     CLICK_COMMENT,
     SHOW_DOWN,
     SHOW_UP,
-    EDIT_POST
+    EDIT_POST,
+    START_APPLICATION
 } 
 from "./actionTypes.js"
 
@@ -38,11 +39,12 @@ const initialState = {
 export function postReducer(state = initialState, action){
     switch (action.type){
         case START_APPLICATION:
+            const commentsArray = action.comments.slice(0 , commentPaginationCount)
             return {
                 ...state,
-                commentsArray : action.comments,
-                displayShowDown : comments.length > commentPaginationCount,
-                commentsCountLeft : comments.length - commentsArray.length
+                commentsArray ,
+                displayShowDown : action.comments.length > commentPaginationCount,
+                commentsCountLeft : action.comments.length - commentsArray.length
             }
         // if correct api call the state is reseted
         case CREATE_COMMENT_SUCCESS :

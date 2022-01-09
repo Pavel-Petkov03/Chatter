@@ -1,7 +1,9 @@
 import { postReducer } from "./posts/actionReducers.js";
-import { combineReducers } from 'redux'
+import { combineReducers , createStore} from 'redux'
 
 
-export default combineReducers({
+const rootReducer = combineReducers({
     post : postReducer
 })
+
+export default createStore(rootReducer)

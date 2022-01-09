@@ -8,6 +8,7 @@ function getPosts(req , res)  {
         if(error){
             console.log(error)
         }else{
+            res.cookie("accessToken" , req.token)
             res.status(200).json({
                 posts : data
             })
@@ -46,6 +47,8 @@ function patchPost (req , res)  {
         })
     })
 }
+
+
 
 function deletePost(req , res)  {
     Post.findOneAndDelete(req.params.postId , (er , data) => {

@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken');
 
 // this function will validate tokens in backend
 function verifyToken(req, res, next) {
+  console.log(req.headers)
     try {
       const token = req.headers.authorization?.split(' ')[1];
-  
       if (!token) {
         return res.status(401).json({
           errorMessage: 'Your token is not valid. Login or register first.',

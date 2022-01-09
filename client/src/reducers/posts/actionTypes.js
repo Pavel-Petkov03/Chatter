@@ -26,3 +26,6 @@ export const EDIT_POST_FAILURE = "Create Post Failure"
 export const LIKE_POST_FAILURE = "Like Post Failure"
 export const SAVE_POST_FAILURE = "Save Post Failure"
 export const DELETE_POST_FAILURE = "Delete Post Failure"
+
+
+export const START_APPLICATION = "Start Application"

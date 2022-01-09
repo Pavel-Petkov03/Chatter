@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const postSchema = new Schema({
     ownerId : Schema.Types.ObjectId,
     content : String,
-    likesCount : {type : Number, default : 0},
+    likesArray : [{type : Schema.Types.ObjectId}],
     ownerImg : { type: String, ref: 'User' },
     postImage : String,// these two images will be saved in firebase or cloudinary later
     creationDate : {type : Date , default : Date.now()},

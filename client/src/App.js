@@ -5,13 +5,8 @@ import {Route, Routes} from "react-router-dom"
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { Provider,} from "react-redux";
-import {createStore} from "redux"
-import rootReducer from "./reducers/rootReducer.js"
 import { Board } from "./components/Board";
-
-
-const store = createStore(rootReducer)
-
+import store from "./reducers/rootReducer"
 
 function App() {
   return (
@@ -21,7 +16,7 @@ function App() {
         <Routes>
           <Route element={<Login/>} path="/login/"/>
           <Route element={<Register/>} path="/register/"/>
-          <Route element={<Board/>} path="/board/"/>
+          <Route element={<Board/>} path="/profile/"/>
         </Routes>
       </div>
     </Provider>

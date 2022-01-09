@@ -13,7 +13,7 @@ function validateContent(content){
 }
 
 
-export {
+module.exports =  {
     validateContent,
     validateImage
 }

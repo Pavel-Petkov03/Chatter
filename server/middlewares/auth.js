@@ -39,7 +39,7 @@ function authenticateEntries(req , res , next) {
     next()
 }
 
-export {
+module.exports =  {
     verifyToken,
     authenticateEntries
 }

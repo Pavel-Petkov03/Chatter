@@ -6,10 +6,6 @@ const commentSchema = new Schema({
     content : String,
     ownerImg : {type : String , ref : "User"},
     likesCount : {type : Number, default : 0},
-    details : {
-        $ref : "Post",
-        $id : Schema.Types.ObjectId
-    }
 });
 
 

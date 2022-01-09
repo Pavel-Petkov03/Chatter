@@ -34,7 +34,7 @@ async function createPost (req, res)  {
 
 
 function patchPost (req , res)  {
-    Post.findOne(req.params.postId , (er , post) => {
+    Post.findOne(req.params.postId , async (er , post) => {
         if(er){
             return res.status(404).json({errorMessage : er.message})
         }

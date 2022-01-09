@@ -1,4 +1,4 @@
-import { generateAccessToken } from "../auth/generateAccessToken.js"
+const  {generateAccessToken} =  require("../auth/generateAccessToken.js")
 
 const bcrypt  = require("bcrypt")
 const User =  require("../models/user.js")
@@ -16,7 +16,7 @@ async function login(req , res){
                 message : "Incorrect password"
             })
         }
-        
+
         return res.status(200).json({
             message : "Successfully logged in",
             token : generateAccessToken(user._id)
@@ -47,6 +47,6 @@ async function register(req , res) {
 }
 
 
-export {
+module.exports =  {
     login , register
 }

@@ -3,7 +3,7 @@ const router = require("express").Router()
 const postController = require("../controllers/post.js")
 const { verifyToken } = require("../middlewares/auth.js")
 const {validateContent , validateImage} = require("../validators/post.js")
-const {validateEntries} = require("../middlewares/auth.js")
+const {authenticateEntries} = require("../middlewares/auth.js")
 
 
 
@@ -18,13 +18,13 @@ router.post("/", (req , res , next) => {
         validateImage(postImage)
     ]
     next()
-} , validateEntries, verifyToken,  postController.createPost)
+} , authenticateEntries, verifyToken,  postController.createPost)
 
 
 router.patch("/:postId" ,(req , res, next) => {
     req.validators = [validateContent(req.body.content)]
     next()
-},  verifyToken ,  postController.patchPost)
+},  authenticateEntries , verifyToken ,  postController.patchPost)
 
 router.delete("/:postId", verifyToken, postController.deletePost)
 

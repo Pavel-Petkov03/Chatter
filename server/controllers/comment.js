@@ -1,6 +1,6 @@
 const Comment = require("../models/comment.js")
 
-function postComment(req , res){
+async function postComment(req , res){
     const {content , ownerImg} = req.body
     try{
         const newComment = new Comment({
@@ -47,7 +47,7 @@ async function deleteComment(req, res) {
     })
 }
 
-export {
+module.exports =  {
     patchComment,
     postComment,
     deleteComment

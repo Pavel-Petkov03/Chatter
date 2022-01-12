@@ -8,7 +8,6 @@ function getPosts(req , res)  {
         if(error){
             console.log(error)
         }else{
-            res.cookie("accessToken" , req.token)
             res.status(200).json({
                 posts : data
             })
@@ -17,7 +16,6 @@ function getPosts(req , res)  {
 }
 
 async function createPost (req, res)  {
-    console.log(req.body)
     const {content , userImage, postImage } = req.body
     // the pictures will be saved in cloud later
     // THIS IS ONLY FOR DEBUGGING

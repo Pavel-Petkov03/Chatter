@@ -6,8 +6,8 @@ export default function Register(){
             <form action="" className="form">
                 <input type="text" placeholder="Username" />
                 <input type="text" placeholder="Email"/>
-                <input type="text" placeholder="Password"/>
-                <input type="text" placeholder="Confirm Password"/>
+                <input type="password" placeholder="Password"/>
+                <input type="password" placeholder="Confirm Password"/>
                <button>Submit</button>
             </form>
         </div> 

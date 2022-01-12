@@ -4,8 +4,8 @@ export default function Login(){
         <div className="Login">
             <h1>Login</h1>
             <form action="" className="form">
-                <input type="text" placeholder="Email"/>
-                <input type="text" placeholder="Password"/>
+                <input type="password" placeholder="Email"/>
+                <input type="password" placeholder="Password"/>
                <button >Submit</button>
             </form>
         </div>

@@ -29,7 +29,6 @@ export default class Api{
         const {successStateMessage , failureStateMessage, ...statePayload} = dispatchPayload
         try{
             const data = await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
-            console.log(data)
             this.tokenManager.setCookie(data.token)
             this.dispatch({type : successStateMessage , ...statePayload}) // state payload is if we want to parse some state
             if(this.successRedirectPlace){
@@ -54,7 +53,7 @@ class TokenManager{
         var date = new Date();
         date.setTime(date.getTime() + (60*1000*2000));
         expires = "; expires=" + date.toUTCString();
-        document.cookie = "accessToken" + "=" + (value || "")  + expires + "; path=/";
+        document.cookie = "accessToken" + "=" + (value || "")  + expires + "; path=/" + "; secure=true";
     }
 
     getCookie () {
@@ -88,7 +87,6 @@ async function generateRequest(endpoint , method, body , token){
     }
 
     Object.assign(options , {headers})
-    console.log(options)
     const res = await fetch(endpoint , options)
     
     const data = await res.json() // my api will return status and errorMessage property every time

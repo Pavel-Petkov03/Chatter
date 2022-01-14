@@ -1,10 +1,9 @@
 
 export default class Api{
-    constructor(endpoint , dispatch, contentType, redirectPlace) {
-        this.dispatch = dispatch
-        this.endpoint = endpoint
-        this.contentType = contentType
-        this.redirectPlace = redirectPlace
+    constructor(endpoint , dispatch, contentType, failureRedirectPlace , successRedirectPlace) {
+        Object.assign(this, {
+            endpoint, dispatch, contentType, failureRedirectPlace, successRedirectPlace
+        })
         this.tokenManager = new TokenManager()
         // dispatch is a reference to the state 
     }
@@ -32,10 +31,16 @@ export default class Api{
             const data = await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
             this.tokenManager.setCookie(data.accessToken)
             this.dispatch({type : successStateMessage , ...statePayload}) // state payload is if we want to parse some state
+            if(this.successRedirectPlace){
+                document.location.href = this.successRedirectPlace
+            }
             return data
         }catch(er){
            this.dispatch({type : failureStateMessage, errorMessage : er.message , ...statePayload})
-            document.location.href = this.redirectPlace
+           console.log(er.message)
+           if(this.failureRedirectPlace){
+            document.location.href = this.failureRedirectPlace
+           }
             // this will be changed with redux
         }
     }
@@ -75,15 +80,15 @@ async function generateRequest(endpoint , method, body , token){
         "Content-Type" : "application/json",
         "Access-Control-Allow-Origin" : "*"
     }
-
     if(body){
-        Object.assign(options , body)
+        Object.assign(options , {body : JSON.stringify(body)})
     }
     if(token){
         Object.assign(headers , {"Authorization" : "Bearer " + token})
     }
 
     Object.assign(options , {headers})
+    console.log(options)
     const res = await fetch(endpoint , options)
     
     const data = await res.json() // my api will return status and errorMessage property every time

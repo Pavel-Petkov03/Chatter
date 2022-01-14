@@ -4,7 +4,9 @@ const bcrypt  = require("bcrypt")
 const User =  require("../models/user.js")
 
 async function login(req , res){
+        console.log(req.body)
         const {email , password} = req.body
+        console.log(email)
         const user = await User.findOne({email}).exec()
         if(user === null){
             return res.status(401).json({

@@ -1,8 +1,8 @@
 
 export default class Api{
-    constructor(endpoint , dispatch, contentType, failureRedirectPlace , successRedirectPlace) {
+    constructor(endpoint , dispatch, contentType) {
         Object.assign(this, {
-            endpoint, dispatch, contentType, failureRedirectPlace, successRedirectPlace
+            endpoint, dispatch, contentType
         })
         this.tokenManager = new TokenManager()
         // dispatch is a reference to the state 
@@ -31,15 +31,9 @@ export default class Api{
             const data = await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
             this.tokenManager.setCookie(data.token)
             this.dispatch({type : successStateMessage , ...statePayload}) // state payload is if we want to parse some state
-            if(this.successRedirectPlace){
-                document.location.href = this.successRedirectPlace
-            }
             return data
         }catch(er){
            this.dispatch({type : failureStateMessage, errorMessage : er.message , ...statePayload})
-           if(this.failureRedirectPlace){
-            document.location.href = this.failureRedirectPlace
-           }
             // this will be changed with redux
         }
     }

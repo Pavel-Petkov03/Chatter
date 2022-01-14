@@ -1,9 +1,11 @@
 
-export default class Api{
-    constructor(endpoint , dispatch, contentType) {
+export default class Api extends Me{
+    constructor(endpoint , dispatch, contentType, redirectPlace) {
         this.dispatch = dispatch
         this.endpoint = endpoint
         this.contentType = contentType
+        this.redirectPlace = redirectPlace
+        this.tokenManager = new TokenManager()
         // dispatch is reference to state 
     }
 
@@ -27,7 +29,7 @@ export default class Api{
     async errorHandler(method, body , token, dispatchPayload){
         const {successStateMessage , failureStateMessage, ...statePayload} = dispatchPayload
         try{
-            const data = await requestManager(this.endpoint , method, body , token)
+            const data = await this.requestManager(method, body , token)
             this.dispatch({type : successStateMessage , ...statePayload}) // state payload is if we want to parse some state
             return data
         }catch(er){
@@ -35,17 +37,42 @@ export default class Api{
            this.dispatch({type : failureStateMessage, errorMessage : er.message , ...statePayload})
         }
     }
+
+    async requestManager(method ,  body , token){
+        const data = await generateRequest(this.endpoint, method , body , token)
+        return data
+        // if generateRequest throws error it will be handeled by 
+    }
+}
+
+
+class TokenManager{
+    constructor(){
+        this.token = this.retrieveCookie()
+    }
+
+    setCookie(){
+
+    }
+
+    removeCookie(){
+
+    }
+
+
+    validateCookie(){
+
+    }
+
+    retrieveCookie(){
+
+    }
 }
 
 
 const errorStatuses = [404 , 401 , ]
 
-async function requestManager(endpoint ,method ,  body , token){
-    window.location.href =  "/login"
-    const data = await generateRequest(endpoint, method , body , token )
-    return data
-    // if generateRequest throws error it will be handeled by 
-}
+
 
 
 // this function will look for error codes from the server

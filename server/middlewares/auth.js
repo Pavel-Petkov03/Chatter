@@ -11,10 +11,10 @@ function verifyToken(req, res, next) {
       }
   
       req.user = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+      req.token = token
     } catch (error) {
       return res.status(401).json({
         errorMessage: 'Your token is not valid.',
-        data: error,
       });
     }
     next();

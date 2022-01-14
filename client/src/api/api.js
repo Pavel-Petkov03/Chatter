@@ -29,7 +29,8 @@ export default class Api{
         const {successStateMessage , failureStateMessage, ...statePayload} = dispatchPayload
         try{
             const data = await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
-            this.tokenManager.setCookie(data.accessToken)
+            console.log(data)
+            this.tokenManager.setCookie(data.token)
             this.dispatch({type : successStateMessage , ...statePayload}) // state payload is if we want to parse some state
             if(this.successRedirectPlace){
                 document.location.href = this.successRedirectPlace
@@ -37,7 +38,6 @@ export default class Api{
             return data
         }catch(er){
            this.dispatch({type : failureStateMessage, errorMessage : er.message , ...statePayload})
-           console.log(er.message)
            if(this.failureRedirectPlace){
             document.location.href = this.failureRedirectPlace
            }
@@ -52,7 +52,7 @@ class TokenManager{
     setCookie(value) {
         let expires = "";
         var date = new Date();
-        date.setTime(date.getTime() + (60*1000));
+        date.setTime(date.getTime() + (60*1000*2000));
         expires = "; expires=" + date.toUTCString();
         document.cookie = "accessToken" + "=" + (value || "")  + expires + "; path=/";
     }

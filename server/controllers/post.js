@@ -9,7 +9,8 @@ function getPosts(req , res)  {
             console.log(error)
         }else{
             res.status(200).json({
-                posts : data
+                posts : data,
+                token : req.token
             })
         }
     })

@@ -1,71 +1,61 @@
 
-export default class Api extends Me{
+export default class Api{
     constructor(endpoint , dispatch, contentType, redirectPlace) {
         this.dispatch = dispatch
         this.endpoint = endpoint
         this.contentType = contentType
         this.redirectPlace = redirectPlace
         this.tokenManager = new TokenManager()
-        // dispatch is reference to state 
+        // dispatch is a reference to the state 
     }
 
-    async get(token, dispatchPayload){
-         return await this.errorHandler("get" , null , token, dispatchPayload)
+    async get(dispatchPayload){
+         return await this.errorHandler("get" , null , dispatchPayload)
     }
 
-    async post(body, token, dispatchPayload){
-        return await this.errorHandler("post" , body , token, dispatchPayload)
+    async post(body,  dispatchPayload){
+        return await this.errorHandler("post" , body ,  dispatchPayload)
     }
 
-    async delete(body, token, dispatchPayload){
-        return await this.errorHandler("delete" , body , token, dispatchPayload)
+    async delete(body,  dispatchPayload){
+        return await this.errorHandler("delete" , body ,  dispatchPayload)
     }
 
-    async patch(body, token, dispatchPayload){
-        return await this.errorHandler("patch" , body , token, dispatchPayload)
+    async patch(body, dispatchPayload){
+        return await this.errorHandler("patch" , body , dispatchPayload)
     }
 
 
-    async errorHandler(method, body , token, dispatchPayload){
+    async errorHandler(method, body ,dispatchPayload){
         const {successStateMessage , failureStateMessage, ...statePayload} = dispatchPayload
         try{
-            const data = await this.requestManager(method, body , token)
+            const data = await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
+            this.tokenManager.setCookie(data.accessToken)
             this.dispatch({type : successStateMessage , ...statePayload}) // state payload is if we want to parse some state
             return data
         }catch(er){
-            
            this.dispatch({type : failureStateMessage, errorMessage : er.message , ...statePayload})
+            document.location.href = this.redirectPlace
+            // this will be changed with redux
         }
-    }
-
-    async requestManager(method ,  body , token){
-        const data = await generateRequest(this.endpoint, method , body , token)
-        return data
-        // if generateRequest throws error it will be handeled by 
     }
 }
 
 
 class TokenManager{
-    constructor(){
-        this.token = this.retrieveCookie()
+
+    setCookie(value) {
+        let expires = "";
+        var date = new Date();
+        date.setTime(date.getTime() + (60*1000));
+        expires = "; expires=" + date.toUTCString();
+        document.cookie = "accessToken" + "=" + (value || "")  + expires + "; path=/";
     }
 
-    setCookie(){
-
-    }
-
-    removeCookie(){
-
-    }
-
-
-    validateCookie(){
-
-    }
-
-    retrieveCookie(){
-
+    getCookie () {
+        let value = `; ${document.cookie}`;
+        let parts = value.split(`; accessToken=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
     }
 }
 

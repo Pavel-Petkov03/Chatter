@@ -10,12 +10,16 @@ export default function Login(){
             <form action="" className="form">
                 <input type="text" placeholder="Email"/>
                 <input type="password" placeholder="Password"/>
-               <button onClick={(ev) => api.post(retrieveData(ev.target.parentNode))}>Submit</button>
+               <button onClick={(ev) => {
+                   ev.preventDefault()
+                   console.log(ev.target.parentNode)
+                   console.log(retrieveData(ev.target.parentNode))}
+               }>Submit</button>
             </form>
         </div>
     )
 }
 
 function retrieveData(form){
-    return [...Object.entries(new FormData(form)).reduce((acc , [k , v]) => Object.assign(acc , {[k] : v}))]
+    return [...Object.entries(new FormData(form))]
 }

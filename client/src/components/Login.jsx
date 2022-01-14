@@ -2,8 +2,10 @@ import "../styles/LoginAndRegister.css"
 import Api from "../api/api.js"
 import { useDispatch } from "react-redux"
 import {LOGIN_FAILURE, LOGIN_SUCCESS} from "../reducers/auth/actionTypes.js"
+import { useNavigate } from "react-router-dom"
 export default function Login(){
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const api = new Api("http://localhost:5000/login", dispatch, "application/json", null , "/profile")
     const payload = {successStateMessage : LOGIN_SUCCESS, failureStateMessage : LOGIN_FAILURE}
     return (
@@ -13,8 +15,9 @@ export default function Login(){
                 <input type="text" placeholder="Email" name="email"/>
                 <input type="password" placeholder="Password" name="password"/>
                <button onClick={(ev) => {
-                   ev.preventDefault()
-                   api.post(retrieveData(ev.target.parentNode), payload)
+                    ev.preventDefault()
+                    api.post(retrieveData(ev.target.parentNode), payload)
+                    navigate("/profile")
             }}>Submit</button>
             </form>
         </div>
@@ -26,5 +29,5 @@ function retrieveData(form){
 }
 
 function clear(){
-    
+
 }

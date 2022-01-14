@@ -8,7 +8,7 @@ export function Board({}){
     const dispatch = useDispatch()
     const [posts , setPosts] = useState([])
     useEffect(() => {
-    setPosts(() => new Api("http://localhost:5000/posts", dispatch, "application/json", "/login").get({successStateMessage : SAVE_POST_SUCCESS, failureStateMessage : SAVE_POST_FAILURE}))
+    setPosts(() => new Api("http://localhost:5000/posts", dispatch, "application/json", null , "/login").get({successStateMessage : SAVE_POST_SUCCESS, failureStateMessage : SAVE_POST_FAILURE}))
   }, [])
 
   return (

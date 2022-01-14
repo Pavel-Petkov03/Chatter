@@ -26,7 +26,6 @@ export default function Post({
     useEffect(() => {
         dispatch({type : START_APPLICATION, comments})
     }, []);
-
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
     return (
         <article className="post" key={postId}>

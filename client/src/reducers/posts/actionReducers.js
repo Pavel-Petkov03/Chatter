@@ -109,7 +109,7 @@ export function postReducer(state = initialState, action){
         case GET_POST_SUCCESS:
             return {
                 ...state,
-                postsArray : state.postsArray.concat(action.postsArray)
+                postsArray : state.postsArray.concat(action.data.posts)
             }
         default : return state
     }

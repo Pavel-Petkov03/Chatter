@@ -107,9 +107,10 @@ export function postReducer(state = initialState, action){
                 ...showDownAndUpChecker(state.commentsArray , action.allComments , "up")
             }
         case GET_POST_SUCCESS:
+            console.log(action.body.posts)
             return {
                 ...state,
-                postsArray : state.postsArray.concat(action.data.posts)
+                postsArray : action.body.posts
             }
         default : return state
     }

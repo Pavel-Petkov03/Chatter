@@ -9,17 +9,18 @@ export function Board(){
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const api = new Api("http://localhost:5000/posts", dispatch, "application/json")
-    useEffect(async () => {
+    useEffect(async  () => {
       try{
           await api.get({successStateMessage : GET_POST_SUCCESS, failureStateMessage : GET_POST_FAILURE})
       }catch(er){
         navigate("/login")
       }
-  }, [])
-  console.log(store.getState().posts.postsArray)
+  })
+
+  {console.log(store.getState())}
   return (
     <div className="post-placeholder">
-        
+      {store.getState().posts.postsArray.map(el => <Post {...el}></Post>)}
     </div>
   )
 }

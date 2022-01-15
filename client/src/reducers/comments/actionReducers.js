@@ -5,8 +5,10 @@ import {
     DELETE_COMMENT_FAILURE,
     DELETE_COMMENT_SUCCESS,
     LIKE_COMMENT_FAILURE,
-    LIKE_COMMENT_SUCCESS
-    
+    LIKE_COMMENT_SUCCESS,
+    SHOW_COMMENTS,
+    SHOW_UP,
+    SHOW_DOWN
 } from "./actionTypes.js"
 const initialState = {
     commentsArray : null,
@@ -22,15 +24,15 @@ const commentPaginationCount = 2
 
 
 
-function commentsReducer(state= initialState, action){
+export function commentsReducer(state= initialState, action){
     switch(action.type){
         case SHOW_COMMENTS:
-            const commentsArray = action.data.posts.comments.slice(0 , commentPaginationCount)
+            const commentsArray = action.comments.slice(0 , commentPaginationCount)
             return {
                 ...state,
                 commentsArray ,
-                displayShowDown : action.data.posts.comments.length > commentPaginationCount,
-                commentsCountLeft : action.data.posts.comments.length - commentsArray.length
+                displayShowDown : action.comments.length > commentPaginationCount,
+                commentsCountLeft : action.comments.length - commentsArray.length
             }
         case SHOW_DOWN : 
             return {
@@ -42,6 +44,8 @@ function commentsReducer(state= initialState, action){
                 ...state ,
                 ...showDownAndUpChecker(state.commentsArray , action.allComments , "up")
             }
+        default:
+            return state
     }
 }
 

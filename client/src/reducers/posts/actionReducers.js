@@ -89,7 +89,8 @@ export function postReducer(state = initialState, action){
         
         case GET_POST_SUCCESS:
             return {
-                posts : action.data.posts
+                ...state,
+                posts : [...action.data.posts]
             }
         default : return state
     }

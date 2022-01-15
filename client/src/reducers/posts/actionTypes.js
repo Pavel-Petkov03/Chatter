@@ -3,8 +3,7 @@
 
 
 // these constant are only for toggle buttons
-export const SHOW_DOWN = "Show Down"
-export const SHOW_UP = "Show Up"
+
 export const EDIT_POST = "Edit Post"
 export const CLICK_COMMENT = "Click Comment"
 export const EMOJI_CLICK = "Emoji Click"

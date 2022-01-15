@@ -34,6 +34,7 @@ export default class Api{
             return data
         }catch(er){
            this.dispatch({type : failureStateMessage, errorMessage : er.message , ...statePayload})
+           throw new Error(er.message)
             // this will be changed with redux
         }
     }

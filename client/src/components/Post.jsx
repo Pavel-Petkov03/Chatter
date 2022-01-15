@@ -20,12 +20,14 @@ import store from "../reducers/rootReducer.js"
 export default function Post({
     userImage, username, postImg , content, postId, comments
 }){
+    console.log(userImage, username, postImg , content, postId, comments)
     const postCommentArea = useRef(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch({type : START_APPLICATION, comments})
     }, []);
+
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
     return (
         <article className="post" key={postId}>

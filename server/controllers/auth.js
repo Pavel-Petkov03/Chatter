@@ -10,12 +10,12 @@ async function login(req , res){
         const user = await User.findOne({email}).exec()
         if(user === null){
             return res.status(401).json({
-                message : "There is not any user with that email"
+                errorMessage : "There is not any user with that email"
             })
         }
         else if(!bcrypt.compare(password , user.password)){
             return res.status(401).json({
-                message : "Incorrect password"
+                errorMessage : "Incorrect password"
             })
         }
 
@@ -36,7 +36,7 @@ async function register(req , res) {
         })
         await user.save()
         return res.status(200).json({
-            message : "successfully logged in",
+            errorMessage : "successfully logged in",
             token : generateAccessToken(user._id) 
         })
 

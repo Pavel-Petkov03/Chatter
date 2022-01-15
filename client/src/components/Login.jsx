@@ -20,7 +20,7 @@ export default function Login(){
                     await api.post(retrieveData(ev.target.parentNode), payload)
                     navigate("/profile")
                    }catch(er){
-                        console.log(er)
+                        console.log(er.message)
                    }
             }}>Submit</button>
             </form>

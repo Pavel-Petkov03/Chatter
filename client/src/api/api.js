@@ -34,6 +34,7 @@ export default class Api{
             // data will be the data parsed from the backend and easily dispatched
             return data
         }catch(er){
+        console.log(er.message)
            this.dispatch({type : failureStateMessage, errorMessage : er.message , ...statePayload})
            throw new Error(er.message)
             // this will be changed with redux

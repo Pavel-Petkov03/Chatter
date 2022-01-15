@@ -40,17 +40,17 @@ export default function Post({
                 <img src={postImage} alt="" className="post-image"/>
                 <div className="post-footer">
                     <div className="post-buttons">
-                        <FaRegCommentAlt color={store.getState().clickedComment ? "gray" : "black"} onClick={() => dispatch({type : CLICK_COMMENT})} />
-                        <CustomHeart likedBool={store.getState().isLiked} customClickEvent={() => dispatch({type : LIKE_POST_SUCCESS})} />
+                        <FaRegCommentAlt color={store.getState().posts.clickedComment ? "gray" : "black"} onClick={() => dispatch({type : CLICK_COMMENT})} />
+                        <CustomHeart likedBool={store.getState().posts.isLiked} customClickEvent={() => dispatch({type : LIKE_POST_SUCCESS})} />
                     </div>
                  </div>
             </div>
-            {store.getState().isEmojiFieldClicked ?
+            {store.getState().posts.isEmojiFieldClicked ?
              <Picker 
                 onEmojiClick={(ev, emojiObject) => postCommentArea.current.value += emojiObject.emoji} 
                 pickerStyle={{position : "absolute",  margin : "60px 270px"}} /> 
              : null}
-            {store.getState().clickedComment ? <>
+            {store.getState().posts.clickedComment ? <>
             <div className="comment-create-section">
                 <textarea ref={postCommentArea} className="comment-create"/>
                 <div className="post-tasks">
@@ -60,13 +60,13 @@ export default function Post({
             </div>
             </> : null}
             <section className="comment-section">
-                {store.getState().commentsArray}
+                {store.getState().posts.commentsArray}
                 <div className="arrows">
                 <div className="arrows-icons">
-                    {store.getState().displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : commentsArray})}/> : null}
-                    {store.getState().displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : commentsArray})}/> : null}
+                    {store.getState().posts.displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : commentsArray})}/> : null}
+                    {store.getState().posts.displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : commentsArray})}/> : null}
                 </div>
-                {store.getState().commentsCountLeft !== 0 ? <p className="comments-left">{store.getState().commentsCountLeft} comments left</p> : null}
+                {store.getState().posts.commentsCountLeft !== 0 ? <p className="comments-left">{store.getState().posts.commentsCountLeft} comments left</p> : null}
             </div>
             </section>
         </article>

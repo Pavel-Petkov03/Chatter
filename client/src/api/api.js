@@ -30,7 +30,6 @@ export default class Api{
         try{
             const data = await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
             this.tokenManager.setCookie(data.token)
-            console.log(data.posts)
             this.dispatch({type : successStateMessage , data ,...statePayload}) // state payload is if we want to parse some state
             // data will be the data parsed from the backend and easily dispatched
             return data

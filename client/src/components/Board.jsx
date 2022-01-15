@@ -15,11 +15,11 @@ export function Board(){
       }catch(er){
         navigate("/login")
       }
-  }, [store.getState().post.postsArray])
-  console.log(store.getState().post.postsArray)
+  }, [])
+  console.log(store.getState().posts.postsArray)
   return (
     <div className="post-placeholder">
-        {store.getState().post.postsArray.map(Post)}
+        
     </div>
   )
 }

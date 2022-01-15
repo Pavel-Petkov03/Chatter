@@ -18,26 +18,26 @@ import { useDispatch } from "react-redux"
 import store from "../reducers/rootReducer.js"
 
 export default function Post({
-    userImage, username, postImg , content, postId, comments
+    userImage, username, postImage , content, _id, commentsArray, likesArray
 }){
-    console.log(userImage, username, postImg , content, postId, comments)
+    console.log(content)
     const postCommentArea = useRef(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch({type : START_APPLICATION, comments})
+        dispatch({type : START_APPLICATION, commentsArray})
     }, []);
 
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
     return (
-        <article className="post" key={postId}>
+        <article className="post" key={_id}>
             <div className="name-row">
                 <img src={currentImg} alt="" className="name-row-img"/>
                 <h5 className="name-row-name">{username}</h5>
             </div>
             <p className="post-content-text">{content}</p>
             <div className="post-content">
-                <img src={postImg} alt="" className="post-image"/>
+                <img src={postImage} alt="" className="post-image"/>
                 <div className="post-footer">
                     <div className="post-buttons">
                         <FaRegCommentAlt color={store.getState().clickedComment ? "gray" : "black"} onClick={() => dispatch({type : CLICK_COMMENT})} />
@@ -63,8 +63,8 @@ export default function Post({
                 {store.getState().commentsArray}
                 <div className="arrows">
                 <div className="arrows-icons">
-                    {store.getState().displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : comments})}/> : null}
-                    {store.getState().displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : comments})}/> : null}
+                    {store.getState().displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : commentsArray})}/> : null}
+                    {store.getState().displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : commentsArray})}/> : null}
                 </div>
                 {store.getState().commentsCountLeft !== 0 ? <p className="comments-left">{store.getState().commentsCountLeft} comments left</p> : null}
             </div>

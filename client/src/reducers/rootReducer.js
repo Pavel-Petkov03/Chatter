@@ -3,7 +3,7 @@ import { combineReducers , createStore} from 'redux'
 
 
 const rootReducer = combineReducers({
-    post : postReducer
+    posts : postReducer
 })
 
 export default createStore(rootReducer)

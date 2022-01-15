@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 export default function Login(){
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const api = new Api("http://localhost:5000/login", dispatch, "application/json", null , "/profile")
+    const api = new Api("http://localhost:5000/login", dispatch, "application/json",)
     const payload = {successStateMessage : LOGIN_SUCCESS, failureStateMessage : LOGIN_FAILURE}
     return (
         <div className="Login">
@@ -14,10 +14,14 @@ export default function Login(){
             <form action="" className="form">
                 <input type="text" placeholder="Email" name="email"/>
                 <input type="password" placeholder="Password" name="password"/>
-               <button onClick={(ev) => {
+               <button onClick={async (ev) => {
+                   try{
                     ev.preventDefault()
-                    api.post(retrieveData(ev.target.parentNode), payload)
+                    await api.post(retrieveData(ev.target.parentNode), payload)
                     navigate("/profile")
+                   }catch(er){
+                        console.log(er)
+                   }
             }}>Submit</button>
             </form>
         </div>

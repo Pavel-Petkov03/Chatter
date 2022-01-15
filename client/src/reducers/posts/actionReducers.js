@@ -14,7 +14,9 @@ import {
     SHOW_DOWN,
     SHOW_UP,
     EDIT_POST,
-    START_APPLICATION
+    START_APPLICATION,
+    GET_POST_SUCCESS,
+    GET_POST_FAILURE
 } 
 from "./actionTypes.js"
 
@@ -31,7 +33,8 @@ const initialState = {
     displayShowUp : false,
     commentsCountLeft :  null , //comments.length - commentsArray.length,
     isEmojiFieldClicked : false,
-    isLiked : false
+    isLiked : false,
+    postsArray : []
 }
 
 
@@ -64,6 +67,7 @@ export function postReducer(state = initialState, action){
         case EDIT_POST_FAILURE : 
         case SAVE_POST_FAILURE :
         case LIKE_POST_FAILURE :
+        case GET_POST_FAILURE : 
             return {
                 ...state ,
                 errorMessage : action.errorMessage
@@ -102,7 +106,11 @@ export function postReducer(state = initialState, action){
                 ...state ,
                 ...showDownAndUpChecker(state.commentsArray , action.allComments , "up")
             }
-        
+        case GET_POST_SUCCESS:
+            return {
+                ...state,
+                postsArray : state.postsArray.concat(action.postsArray)
+            }
         default : return state
     }
 }

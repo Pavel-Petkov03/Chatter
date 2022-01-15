@@ -6,7 +6,7 @@ export const EDIT_COMMENT = "Edit Comment"
 
 export const LIKE_COMMENT_SUCCESS = "Like Comment Success"
 
-// these will reset state in correct api call
+// these will reset state in correct  api call
 export const DELETE_COMMENT_SUCCESS= "Delete Comment Success"
 export const EDIT_COMMENT_SUCCESS= "Edit Comment Success"
 

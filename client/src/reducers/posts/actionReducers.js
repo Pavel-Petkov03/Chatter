@@ -15,7 +15,6 @@ import {
     SHOW_DOWN,
     SHOW_UP,
     EDIT_POST,
-    START_APPLICATION,
     GET_POST_SUCCESS,
     GET_POST_FAILURE
 } 
@@ -29,10 +28,6 @@ const initialState = {
     editMode : false,
     errorMessage : "",
     clickedComment : false,
-    commentsArray : null,
-    displayShowDown :  null,  // comments.length > commentPaginationCount,
-    displayShowUp : false,
-    commentsCountLeft :  null , //comments.length - commentsArray.length,
     isEmojiFieldClicked : false,
     isLiked : false,
     posts : []
@@ -43,15 +38,6 @@ const initialState = {
 export function postReducer(state = initialState, action){
     console.log(action)
     switch (action.type){
-        
-        case START_APPLICATION:
-            const commentsArray = action.comments.slice(0 , commentPaginationCount).slice()
-            return {
-                ...state,
-                commentsArray ,
-                displayShowDown : action.comments.length > commentPaginationCount,
-                commentsCountLeft : action.comments.length - commentsArray.length
-            }
         // if correct api call the state is reseted
         case CREATE_COMMENT_SUCCESS :
         case EDIT_POST_SUCCESS :
@@ -100,20 +86,10 @@ export function postReducer(state = initialState, action){
                 ...state,
                 isLiked : !state.isLiked
             }
-        case SHOW_DOWN : 
-            return {
-                ...state ,
-                ...showDownAndUpChecker(state.commentsArray , action.allComments , "down")
-            }
-        case SHOW_UP : 
-            return {
-                ...state ,
-                ...showDownAndUpChecker(state.commentsArray , action.allComments , "up")
-            }
+        
         case GET_POST_SUCCESS:
             return {
-                ...state,
-                posts : action.data.posts.slice()
+                posts : action.data.posts
             }
         default : return state
     }
@@ -122,26 +98,3 @@ export function postReducer(state = initialState, action){
 
 
 
-function showDownAndUpChecker(stateComments , allComments , upOrDown){
-    let commentsArray
-    let displayShowDown = true
-    let displayShowUp = true
-    if(upOrDown === "down"){
-        commentsArray = allComments.slice(0 , stateComments.length + commentPaginationCount)
-    }else if(upOrDown == "up"){
-        commentsArray = allComments.slice(0 , stateComments.length - commentPaginationCount)
-    }
-
-
-    if(commentsArray.length <= 2){
-        displayShowUp = false
-    }else if(commentsArray.length === allComments.length){
-        displayShowDown = false
-    }
-    return {
-        commentsArray,
-        displayShowUp,
-        displayShowDown,
-        commentsCountLeft : allComments.length - commentsArray.length
-    }
-}

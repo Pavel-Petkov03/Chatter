@@ -8,7 +8,7 @@ const postSchema = new Schema({
     ownerImg : { type: String, ref: 'User' },
     postImage : String,// these two images will be saved in firebase or cloudinary later
     creationDate : {type : Date , default : Date.now()},
-    commentsArray : [{type : Object}]
+    comments : [{type : Object}]
 });
 
 

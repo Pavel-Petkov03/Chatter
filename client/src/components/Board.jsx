@@ -19,7 +19,8 @@ export function Board(){
   return (
     
     <div className="post-placeholder">
-        {store.getState().posts.posts ? store.getState().posts.posts.map(el => <Post {...el}/>) : null }
+        {store.getState().posts.posts ? store.getState().posts.posts.map(Post) : null }
+        {store.getState().posts.posts.length > 0 ? <div>Da</div> : <div>Ne</div>}
     </div>
   )
 }

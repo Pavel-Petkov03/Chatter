@@ -1,5 +1,5 @@
 import { useDispatch} from 'react-redux'
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
 import Api from "../api/api.js"
 import Post from "./Post.jsx"
 import store from "../reducers/rootReducer.js"
@@ -9,18 +9,17 @@ export function Board(){
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const api = new Api("http://localhost:5000/posts", dispatch, "application/json")
-    useEffect(async  () => {
+    useEffect(async () => {
       try{
-          await api.get({successStateMessage : GET_POST_SUCCESS, failureStateMessage : GET_POST_FAILURE})
+        await api.get({successStateMessage : GET_POST_SUCCESS, failureStateMessage : GET_POST_FAILURE})
       }catch(er){
         navigate("/login")
       }
-  })
-
-  {console.log(store.getState())}
+  }, [store.getState().posts.posts])
   return (
+    
     <div className="post-placeholder">
-      {store.getState().posts.postsArray.map(el => <Post {...el}></Post>)}
+        {store.getState().posts.posts ? store.getState().posts.posts.map(el => <Post {...el}/>) : null }
     </div>
   )
 }

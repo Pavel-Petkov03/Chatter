@@ -1,3 +1,4 @@
+import { LOGIN_FAILURE } from "../auth/actionTypes.js"
 import {
     CREATE_COMMENT_FAILURE,
     CREATE_COMMENT_SUCCESS,
@@ -34,15 +35,17 @@ const initialState = {
     commentsCountLeft :  null , //comments.length - commentsArray.length,
     isEmojiFieldClicked : false,
     isLiked : false,
-    postsArray : []
+    posts : []
 }
 
 
 
 export function postReducer(state = initialState, action){
+    console.log(action)
     switch (action.type){
+        
         case START_APPLICATION:
-            const commentsArray = action.comments.slice(0 , commentPaginationCount)
+            const commentsArray = action.comments.slice(0 , commentPaginationCount).slice()
             return {
                 ...state,
                 commentsArray ,
@@ -68,6 +71,7 @@ export function postReducer(state = initialState, action){
         case SAVE_POST_FAILURE :
         case LIKE_POST_FAILURE :
         case GET_POST_FAILURE : 
+        case LOGIN_FAILURE : 
             return {
                 ...state ,
                 errorMessage : action.errorMessage
@@ -107,10 +111,9 @@ export function postReducer(state = initialState, action){
                 ...showDownAndUpChecker(state.commentsArray , action.allComments , "up")
             }
         case GET_POST_SUCCESS:
-            console.log(action.body.posts)
             return {
                 ...state,
-                postsArray : action.body.posts
+                posts : action.data.posts.slice()
             }
         default : return state
     }

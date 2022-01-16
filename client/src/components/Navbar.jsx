@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 export default function Navbar({isAuthenticated}){
     return (
             <nav className="Navbar">
-                <a href="/profile">Chatter</a>
+                <Link to="posts">Chatter</Link>
                 <div>
                     {isAuthenticated ? <>
                     <a href="/profile">My Profile</a>

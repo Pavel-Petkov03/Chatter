@@ -1,43 +1,37 @@
 
 export default class Api{
-    constructor(endpoint , dispatch, contentType) {
+    constructor(endpoint,  contentType) {
         Object.assign(this, {
-            endpoint, dispatch, contentType
+            endpoint , contentType
         })
         this.tokenManager = new TokenManager()
         // dispatch is a reference to the state 
     }
 
-    async get(dispatchPayload){
-         return await this.errorHandler("get" , null , dispatchPayload)
+    async get(){
+         return await this.errorHandler("get" , null)
     }
 
-    async post(body,  dispatchPayload){
-        return await this.errorHandler("post" , body ,  dispatchPayload)
+    async post(body){
+        return await this.errorHandler("post" , body)
     }
 
-    async delete(body,  dispatchPayload){
-        return await this.errorHandler("delete" , body ,  dispatchPayload)
+    async delete(body){
+        return  await this.errorHandler("delete" , body)
     }
 
-    async patch(body, dispatchPayload){
-        return await this.errorHandler("patch" , body , dispatchPayload)
+    async patch(body){
+        return await this.errorHandler("patch" , body)
     }
 
 
-    async errorHandler(method, body ,dispatchPayload){
-        const {successStateMessage , failureStateMessage, ...statePayload} = dispatchPayload
+    async errorHandler(method, body){
         try{
             const data = await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
             this.tokenManager.setCookie(data.token)
-            this.dispatch({type : successStateMessage , data ,...statePayload}) // state payload is if we want to parse some state
-            // data will be the data parsed from the backend and easily dispatched
             return data
         }catch(er){
-        console.log(er.message)
-           this.dispatch({type : failureStateMessage, errorMessage : er.message , ...statePayload})
-           throw new Error(er.message)
-            // this will be changed with redux
+            throw new Error(er.message)
         }
     }
 }

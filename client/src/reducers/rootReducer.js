@@ -1,6 +1,7 @@
 import { postReducer } from "./posts/actionReducers.js";
 import { commentsReducer } from "./comments/actionReducers.js";
-import { combineReducers , createStore} from 'redux'
+import { combineReducers , createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
 
 
 const rootReducer = combineReducers({
@@ -8,4 +9,4 @@ const rootReducer = combineReducers({
     comments : commentsReducer
 })
 
-export default createStore(rootReducer)
+export default createStore(rootReducer, applyMiddleware(thunk))

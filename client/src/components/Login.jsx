@@ -18,7 +18,7 @@ export default function Login(){
                    try{
                     ev.preventDefault()
                     await api.post(retrieveData(ev.target.parentNode), payload)
-                    navigate("/profile")
+                    navigate("/posts")
                    }catch(er){
                         console.log(er.message)
                    }

@@ -1,7 +1,7 @@
 import "./styles/App.css"
 
 import  NavBar  from "./components/Navbar";
-import {Route, Routes, Redirect} from "react-router-dom"
+import {Route, Routes} from "react-router-dom"
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { Provider,} from "react-redux";
@@ -16,9 +16,9 @@ function App() {
         <div className="App">
         <NavBar/>
         <Routes >
-          <Route element={<Login/>} path="/login/" />
-          <Route element={<Register/>} path="/register/"/>
-          <Route element={<Board/>} path="/profile/"/>
+          <Route element={<Login/>} path="/login" />
+          <Route element={<Register/>} path="/register"/>
+          <Route element={<Board/>} path="/posts"/>
         </Routes>
       </div>
     </Provider>

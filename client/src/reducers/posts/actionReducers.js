@@ -36,7 +36,6 @@ const initialState = {
 
 
 export function postReducer(state = initialState, action){
-    console.log(action)
     switch (action.type){
         // if correct api call the state is reseted
         case CREATE_COMMENT_SUCCESS :
@@ -88,10 +87,9 @@ export function postReducer(state = initialState, action){
             }
         
         case GET_POST_SUCCESS:
-            console.log([...action.posts])
             return {
                 ...state,
-                posts : [...state.posts.concat(action.posts)]
+                posts : [...action.data.posts]
             }
         default : return state
     }

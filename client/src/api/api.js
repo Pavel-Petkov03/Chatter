@@ -27,7 +27,7 @@ export default class Api{
 
     async errorHandler(method, body){
         try{
-            const data = await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
+            const data =  await generateRequest(this.endpoint, method , body, this.tokenManager.getCookie())
             this.tokenManager.setCookie(data.token)
             return data
         }catch(er){

@@ -4,25 +4,38 @@ import  NavBar  from "./components/Navbar";
 import {Route, Routes} from "react-router-dom"
 import Login from "./components/Login";
 import Register from "./components/Register";
-import { Provider,} from "react-redux";
 import { Board } from "./components/Board";
-import store from "./reducers/rootReducer"
+import {connect} from "react-redux"
+import {getPosts} from "./actions/posts.js"
 
-
-
-function App() {
+function App(props) {
   return (
-    <Provider store={store}>
         <div className="App">
         <NavBar/>
         <Routes >
           <Route element={<Login/>} path="/login" />
           <Route element={<Register/>} path="/register"/>
-          <Route element={<Board/>} path="/posts"/>
+          <Route element={<Board {...props}/>} path="/posts"/>
         </Routes>
       </div>
-    </Provider>
   );
 }
 
-export default App;
+
+const mapStateToProps = (store) => {
+  const {posts , comments} = store
+  return {posts , comments}
+} 
+
+
+const mapDispatchToProps = (dispatch) => {
+  console.log(dispatch)
+  return {
+    post : {
+      getPost : () => dispatch(getPosts())
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

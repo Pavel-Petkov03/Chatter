@@ -9,4 +9,6 @@ const rootReducer = combineReducers({
     comments : commentsReducer
 })
 
-export default createStore(rootReducer, applyMiddleware(thunk))
+const store =  createStore(rootReducer, applyMiddleware(thunk))
+
+export default store

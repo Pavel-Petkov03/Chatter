@@ -12,15 +12,11 @@ import {
     SAVE_POST_FAILURE,
     SAVE_POST_SUCCESS, 
     CLICK_COMMENT,
-    SHOW_DOWN,
-    SHOW_UP,
     EDIT_POST,
     GET_POST_SUCCESS,
     GET_POST_FAILURE
 } 
 from "./actionTypes.js"
-
-const commentPaginationCount =  2
 
 
 

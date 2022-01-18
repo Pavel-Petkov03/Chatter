@@ -3,6 +3,7 @@ import Api from "../api/api.js"
 import { useDispatch } from "react-redux"
 import {LOGIN_FAILURE, LOGIN_SUCCESS} from "../reducers/auth/actionTypes.js"
 import { useNavigate } from "react-router-dom"
+import CustomModal from "./Modals/CustomModal"
 export default function Login(){
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -25,6 +26,7 @@ export default function Login(){
             }}>Submit</button>
             </form>
         </div>
+        
     )
 }
 

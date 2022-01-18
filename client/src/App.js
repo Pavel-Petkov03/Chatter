@@ -7,17 +7,20 @@ import Register from "./components/Register";
 import { Board } from "./components/Board";
 import {connect} from "react-redux"
 import {getPosts} from "./actions/posts.js"
+import CustomModal from "./components/Modals/CustomModal";
 
 function App(props) {
   return (
-        <div className="App">
+      <div className="App">
+         <CustomModal/>
         <NavBar/>
         <Routes >
           <Route element={<Login/>} path="/login" />
           <Route element={<Register/>} path="/register"/>
           <Route element={<Board {...props}/>} path="/posts"/>
         </Routes>
-      </div>
+       
+    </div>
   );
 }
 
@@ -29,13 +32,15 @@ const mapStateToProps = (store) => {
 
 
 const mapDispatchToProps = (dispatch) => {
-  console.log(dispatch)
   return {
-    post : {
+    posts : {
       getPost : () => dispatch(getPosts())
     }
   }
 }
 
+const mapMergeToProps = (stateProps , dispatchProps) => {
+  return [...Object.entries(stateProps)].reduce((acc , [k , v]) => Object.assign(acc,  {[k] : {dispatch : dispatchProps[k], state: v}}, {}))
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps, mapMergeToProps)(App)

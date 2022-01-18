@@ -36,3 +36,9 @@ background-color: rgba(0, 0, 0, 0.6);
 backdrop-filter: blur(3px);
 z-index: 5;
 }
+
+.modal-holder{
+        position: absolute;
+        white-space: nowrap;
+        overflow: hidden;
+}

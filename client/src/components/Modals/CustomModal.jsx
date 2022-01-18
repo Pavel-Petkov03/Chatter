@@ -1,9 +1,9 @@
 import "../../styles/Modal.css" 
 
 
-export default function CutomModal(){
+export default function CustomModal(){
     return (
-        <div >
+        <div>
             <div class="modal">
                 <h1>Modal window</h1>
                 <button class="close-icon">&times;</button>

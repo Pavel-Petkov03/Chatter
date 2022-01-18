@@ -12,32 +12,37 @@ function getPosts(){
 }
 
 
-// function createPost(payload){
-//     return function(dispatch){
-//         api.post(payload)
-//         .then(data => dispatch({type : CREATE_POST_SUCCESS, data}))
-//         .catch(er => dispatch({type : CREATE_POST_SUCCESS, errorMessage : er.message}))
-//     }
-// }
+function createPost(payload){
+    return function(dispatch){
+        api.post(payload)
+        .then(data => dispatch({type : CREATE_POST_SUCCESS, data}))
+        .catch(er => dispatch({type : CREATE_POST_SUCCESS, errorMessage : er.message}))
+    }
+}
 
 
-// function patchPost(payload){
-//     return function(dispatch){
-//         api.patch(payload)
-//         .then(data => dispatch({type : CREATE_POST_SUCCESS, data}))
-//         .catch(er => dispatch({type : CREATE_POST_SUCCESS, errorMessage : er.message}))
-//     }
-// }
+function patchPost(payload){
+    return function(dispatch){
+        api.patch(payload)
+        .then(data => dispatch({type : CREATE_POST_SUCCESS, data}))
+        .catch(er => dispatch({type : CREATE_POST_SUCCESS, errorMessage : er.message}))
+    }
+}
 
 
-// function deletePost(record){
-//     return function(dispatch){
-//         api.delete(record)
-//         .then(data => dispatch({type : CREATE_POST_SUCCESS, data}))
-//         .catch(er => dispatch({type : CREATE_POST_SUCCESS, errorMessage : er.message}))
-//     }
-// }
+function deletePost(record){
+    return function(dispatch){
+        api.delete(record)
+        .then(data => dispatch({type : CREATE_POST_SUCCESS, data}))
+        .catch(er => dispatch({type : CREATE_POST_SUCCESS, errorMessage : er.message}))
+    }
+}
+
+
 
 export {
-    getPosts
+    getPosts,
+    deletePost,
+    patchPost,
+    createPost
 }

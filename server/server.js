@@ -6,7 +6,6 @@ const authRoutes = require("./routes/auth")
 const cors = require("cors")
 app.use(cors())
 app.use(express.json())
-app.use(cookieParser())
 app.use("/posts", postRouter)
 app.use("/" , authRoutes)
 app.listen(5000, () => {

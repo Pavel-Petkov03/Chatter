@@ -1,13 +1,15 @@
 import {useEffect} from "react"
 import Post from "./Post.jsx"
-export function Board({posts , post}){
+import { useNavigate } from "react-router-dom"
+export function Board({posts : {dispatch, state} , comments}){
+    const navigate = useNavigate()
     useEffect(() => {
-        post.getPost()
+        dispatch.get(navigate)
     }, [])
 
   return (
     <div className="post-placeholder">
-        {posts.posts.length !== 0 ? posts.posts.map((args) => <Post {...args}/>) : null}
+        {state.posts.length !== 0 ? state.posts.map((postProps) => <Post {{post : postProps, comments}}/>) : null}
     </div>
   )
 }

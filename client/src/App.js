@@ -11,10 +11,9 @@ import CustomModal from "./components/Modals/CustomModal";
 
 
 function App(props) {
-  console.log(props)
+
   return (
-      <div className="App"> 
-         <CustomModal/>
+      <div className="App">
         <NavBar/>
         <Routes >
           <Route element={<Login/>} path="/login" />
@@ -36,14 +35,14 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     posts : {
-      get : dispatch(getPosts()),
-      post : dispatch(createPost()),
-      patch : dispatch(patchPost()),
-      delete : dispatch(deletePost())
+      get : (router) => dispatch(getPosts(router)), // this is the worst shit I have ever wrote
+      post : () => dispatch(createPost),
+      patch : () => dispatch(patchPost),
+      delete : () => dispatch(deletePost)
     }
   }
 }
-
+// MapStateToProps and MapDispatchToProps must return same keys in order to connect them in component
 const mapMergeToProps = (stateProps , dispatchProps) => {
   return [...Object.entries(stateProps)].reduce((acc , [k , v]) => Object.assign(acc,  {[k] : {dispatch : dispatchProps[k], state: v}}), {})
 }

@@ -25,9 +25,9 @@ export default function Post({
     const postCommentArea = useRef(null)
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch({type : SHOW_COMMENTS, comments})
-    // }, []);
+    useEffect(() => {
+        dispatch({type : SHOW_COMMENTS, comments})
+    }, []);
 
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
     return (

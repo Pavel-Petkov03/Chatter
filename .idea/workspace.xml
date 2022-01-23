@@ -4,10 +4,11 @@
     <list default="true" id="34088fd5-d34d-422f-a5aa-a05d1d7b3e74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/posts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Board.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/posts/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/posts/actionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +33,11 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Node.js.Board.jsx">
+  <component name="RunManager" selected="Node.js.post.js">
     <configuration name="Board.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/client/src/components/Board.jsx" working-dir="$PROJECT_DIR$/client/src/components">
+      <method v="2" />
+    </configuration>
+    <configuration name="post.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/controllers/post.js" working-dir="$PROJECT_DIR$/server/controllers">
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
@@ -47,11 +51,13 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="npm.start" />
       <item itemvalue="Node.js.Board.jsx" />
+      <item itemvalue="Node.js.post.js" />
+      <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.post.js" />
         <item itemvalue="Node.js.Board.jsx" />
       </list>
     </recent_temporary>
@@ -67,6 +73,10 @@
       <workItem from="1641603720793" duration="5000" />
       <workItem from="1641926700142" duration="31000" />
       <workItem from="1642539526124" duration="3516000" />
+      <workItem from="1642591604726" duration="1567000" />
+      <workItem from="1642625049821" duration="2066000" />
+      <workItem from="1642670829030" duration="3202000" />
+      <workItem from="1642952190279" duration="794000" />
     </task>
     <servers />
   </component>

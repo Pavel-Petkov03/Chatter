@@ -35,7 +35,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     posts : {
-      get : (router) => dispatch(getPosts(router)), // this is the worst shit I have ever wrote
+      get : (router) => dispatch(getPosts(router)),
       post : () => dispatch(createPost),
       patch : () => dispatch(patchPost),
       delete : () => dispatch(deletePost)

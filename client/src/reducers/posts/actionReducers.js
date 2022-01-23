@@ -26,8 +26,9 @@ const initialState = {
     clickedComment : false,
     isEmojiFieldClicked : false,
     isLiked : false,
-    posts : []
+    posts : {}
 }
+
 
 
 
@@ -85,7 +86,7 @@ export function postReducer(state = initialState, action){
         case GET_POST_SUCCESS:
             return {
                 ...state,
-                posts : [...action.data.posts]
+                posts : {...action.data.posts , ...state.post}
             }
         default : return state
     }

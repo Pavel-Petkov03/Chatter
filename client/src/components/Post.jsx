@@ -19,9 +19,9 @@ import {
     SHOW_UP , SHOW_DOWN, SHOW_COMMENTS
 } from "../reducers/comments/actionTypes.js"
 
-export default function Post({
-    userImage, username, postImage , content, _id, comments, likesArray
-}){
+export default ({
+                    userImage, username, postImage, content, _id, comments, likesArray
+                }) => {
     const postCommentArea = useRef(null)
     const dispatch = useDispatch()
 

@@ -9,11 +9,15 @@ function getPosts(req , res)  {
             console.log(error)
         }else{
             res.status(200).json({
-                posts : data,
+                posts :formatData(data),
                 token : req.token
             })
         }
     })
+}
+
+function formatData(array){
+    return array.reduce((acc , {_id , ...state}) => Object.assign(acc , {_id : state}), {})
 }
 
 async function createPost (req, res)  {

@@ -9,7 +9,7 @@ export function Board({posts : {dispatch, state} , comments}){
 
   return (
     <div className="post-placeholder">
-        {state.posts.length !== 0 ? state.posts.map((postProps) => <Post {{post : postProps, comments}}/>) : null}
+        {state.posts.length !== 0 ? Object.values(state.posts).map((postProps) => <Post {...postProps}/>) : null}
     </div>
   )
 }

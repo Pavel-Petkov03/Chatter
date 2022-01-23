@@ -34,6 +34,6 @@ function retrieveData(form){
     return [...(new FormData(form).entries())].reduce((acc , [k ,v ]) => Object.assign(acc , {[k] : v}), {})
 }
 
-function clear(){
-
+function clear(form){
+    form.children.forEach(el => el.value = "")
 }

@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="34088fd5-d34d-422f-a5aa-a05d1d7b3e74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Board.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/reducers/comments/actionReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/comments/actionReducers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/comment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +78,8 @@
       <workItem from="1642952190279" duration="2767000" />
       <workItem from="1642967091716" duration="3637000" />
       <workItem from="1643015601753" duration="5908000" />
+      <workItem from="1643041038500" duration="1241000" />
+      <workItem from="1643051923146" duration="5275000" />
     </task>
     <servers />
   </component>

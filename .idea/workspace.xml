@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="34088fd5-d34d-422f-a5aa-a05d1d7b3e74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Board.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Post.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/post.js" afterDir="false" />
@@ -29,7 +27,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/client/package.json" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -76,7 +74,9 @@
       <workItem from="1642591604726" duration="1567000" />
       <workItem from="1642625049821" duration="2066000" />
       <workItem from="1642670829030" duration="3202000" />
-      <workItem from="1642952190279" duration="794000" />
+      <workItem from="1642952190279" duration="2767000" />
+      <workItem from="1642967091716" duration="3637000" />
+      <workItem from="1643015601753" duration="5908000" />
     </task>
     <servers />
   </component>

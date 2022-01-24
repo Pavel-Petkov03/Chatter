@@ -66,15 +66,15 @@ export function postReducer(state = initialState, action){
             }
         
         case CLICK_COMMENT:
+            state.posts[action._id].clickedComment = !state.posts[action._id].clickedComment
             return {
                 ...state,
-                clickedComment : !state.clickedComment
             }
         
         case EMOJI_CLICK:
+            state.posts[action._id].isEmojiFieldClicked = !state.posts[action._id].isEmojiFieldClicked
             return {
-                ...state,
-                isEmojiFieldClicked : !state.isEmojiFieldClicked
+                ...state
             }
         
         case LIKE_POST_SUCCESS :
@@ -86,12 +86,14 @@ export function postReducer(state = initialState, action){
         case GET_POST_SUCCESS:
             return {
                 ...state,
-                posts : {...action.data.posts , ...state.post}
+                posts : {...action.data.posts , ...addState(state.posts)}
             }
         default : return state
     }
 }
 
-
+function addState(obj){
+    return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...v , initialState}}), {})
+}
 
 

@@ -1,7 +1,7 @@
 const Post = require("../models/post.js")
+const Comment = require("../models/comment.js")
 
-
-function getPosts(req , res)  {
+async function getPosts(req , res)  {
     const skip =  0
     const limit = 10
     Post.find().sort({creationDate : -1}).limit(limit).skip(skip).lean().exec((error , data) => {

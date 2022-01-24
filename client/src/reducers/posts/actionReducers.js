@@ -78,9 +78,9 @@ export function postReducer(state = initialState, action){
             }
         
         case LIKE_POST_SUCCESS :
+            state.posts[action._id].isLiked = !state.posts[action._id].isLiked
             return {
                 ...state,
-                isLiked : !state.isLiked
             }
         
         case GET_POST_SUCCESS:

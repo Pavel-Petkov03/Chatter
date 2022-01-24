@@ -6,7 +6,7 @@ import {
     DELETE_COMMENT_SUCCESS,
     LIKE_COMMENT_FAILURE,
     LIKE_COMMENT_SUCCESS,
-    SHOW_COMMENTS,
+SHOW_COMMENTS,
     SHOW_UP,
     SHOW_DOWN
 } from "./actionTypes.js"
@@ -26,9 +26,10 @@ const commentPaginationCount = 2
 
 
 export function commentsReducer(state= initialState, action){
+    console.log(action.comments)
     switch(action.type){
         case SHOW_COMMENTS:
-            const allComments = action.comments
+            const allComments = state.allComments || action.comments
             const commentsArray = allComments.slice(0 , commentPaginationCount)
             return {
                 ...state,
@@ -48,7 +49,7 @@ export function commentsReducer(state= initialState, action){
                 ...showDownAndUpChecker(state.commentsArray , state.allComments , "up")
             }
         default:
-            return state
+            return {...state}
     }
 }
 
@@ -59,7 +60,7 @@ function showDownAndUpChecker(stateComments , allComments , upOrDown){
     let displayShowUp = true
     if(upOrDown === "down"){
         commentsArray = allComments.slice(0 , stateComments.length + commentPaginationCount)
-    }else if(upOrDown == "up"){
+    }else if(upOrDown === "up"){
         commentsArray = allComments.slice(0 , stateComments.length - commentPaginationCount)
     }
 

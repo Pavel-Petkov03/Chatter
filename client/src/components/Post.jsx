@@ -23,11 +23,17 @@ export default ({postData : [_id , {
     userImage , content , username , postImage, comments
 }] , props}) => {
     const dispatch = useDispatch()
-    const state = props.posts.state
+
+    const postState = props.posts.state
+    const commentState = props.comments.state
+
+
     const postCommentArea = useRef(null)
-    // useEffect(() => {
-    //     dispatch({type : SHOW_COMMENTS, comments})
-    // }, []);
+
+
+    useEffect(() => {
+        dispatch({type : SHOW_COMMENTS, comments})
+    }, []);
 
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
     return (
@@ -41,17 +47,18 @@ export default ({postData : [_id , {
                 <img src={postImage} alt="" className="post-image"/>
                 <div className="post-footer">
                     <div className="post-buttons">
-                        <FaRegCommentAlt color={state.posts[_id].clickedComment ? "gray" : "black"} onClick={() => dispatch({type : CLICK_COMMENT , _id})} />
-                        <CustomHeart likedBool={state.posts[_id].isLiked} customClickEvent={() => dispatch({type : LIKE_POST_SUCCESS})} />
+                        <FaRegCommentAlt color={postState.posts[_id].clickedComment ? "gray" : "black"} onClick={() => dispatch({type : CLICK_COMMENT , _id})} />
+                        {/*// this is going to be in action file*/}
+                        <CustomHeart likedBool={postState.posts[_id].isLiked} customClickEvent={() => dispatch({type : LIKE_POST_SUCCESS, _id})} />
                     </div>
                  </div>
             </div>
-            {state.posts[_id].isEmojiFieldClicked ?
+            {postState.posts[_id].isEmojiFieldClicked ?
              <Picker
                 onEmojiClick={(ev, emojiObject) => postCommentArea.current.value += emojiObject.emoji}
                 pickerStyle={{position : "absolute",  margin : "60px 270px"}} />
              : null}
-            {state.posts[_id].clickedComment ? <>
+            {postState.posts[_id].clickedComment ? <>
             <div className="comment-create-section">
                 <textarea ref={postCommentArea} className="comment-create"/>
                 <div className="post-tasks">
@@ -61,7 +68,7 @@ export default ({postData : [_id , {
             </div>
             </> : null}
             <section className="comment-section">
-                {state.posts[_id].commentsArray}
+                {postState.posts[_id].commentsArray}
                 <div className="arrows">
                 <div className="arrows-icons">
                     {store.getState().comments.displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : comments})}/> : null}

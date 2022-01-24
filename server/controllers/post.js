@@ -4,7 +4,7 @@ const Post = require("../models/post.js")
 function getPosts(req , res)  {
     const skip =  0
     const limit = 10
-    Post.find().sort({creationDate : -1}).limit(limit).skip(skip).exec((error , data) => {
+    Post.find().sort({creationDate : -1}).limit(limit).skip(skip).lean().exec((error , data) => {
         if(error){
             console.log(error)
         }else{
@@ -17,7 +17,10 @@ function getPosts(req , res)  {
 }
 
 function formatData(array){
-    return array.reduce((acc , {_id , ...state}) => Object.assign(acc , {_id : state}), {})
+    return array.reduce((acc , {_id , ...state}) => {
+        acc[_id] = state
+        return acc
+    }, {})
 }
 
 async function createPost (req, res)  {

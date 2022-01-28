@@ -1,9 +1,7 @@
 
-
-
 const Post = require("../models/post.js")
-const {param, process_params} = require("express/lib/router");
 async function postComment(req , res){
+    // todo make middleware for validating picture
     const {content , ownerImg, postId} = req.body
     try{
         const currentPost = await Post.findById(postId)
@@ -39,7 +37,6 @@ async function patchComment(req , res){
 
 async function deleteComment(req, res) {
     const {postId , commentId} = req.body
-    const setter = ``
     Post.findByIdAndUpdate({_id : postId} , {$pull : {comments : commentId}}, {new : true}, (er , data) => {
         if(er){
             return res.status(404).json({

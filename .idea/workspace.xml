@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="34088fd5-d34d-422f-a5aa-a05d1d7b3e74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Post.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/comments/actionReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/comments/actionReducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Board.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/comment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +15,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/WebstormProjects/utils/recursiveSummer.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="groupByToolId" value="true" />
+    <option name="sortByName" value="true" />
   </component>
   <component name="ProjectId" id="23OSbSu6c6o3aKqw6dAiXbARcRh" />
   <component name="ProjectViewState">
@@ -26,17 +32,25 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/package.json" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.2.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Node.js.post.js">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Pavel\WebstormProjects\utils" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.recursiveSummer.js">
     <configuration name="Board.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/client/src/components/Board.jsx" working-dir="$PROJECT_DIR$/client/src/components">
       <method v="2" />
     </configuration>
     <configuration name="post.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/controllers/post.js" working-dir="$PROJECT_DIR$/server/controllers">
+      <method v="2" />
+    </configuration>
+    <configuration name="recursiveSummer.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$USER_HOME$/WebstormProjects/utils/recursiveSummer.js" working-dir="$USER_HOME$/WebstormProjects/utils">
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
@@ -52,10 +66,12 @@
     <list>
       <item itemvalue="Node.js.Board.jsx" />
       <item itemvalue="Node.js.post.js" />
+      <item itemvalue="Node.js.recursiveSummer.js" />
       <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.recursiveSummer.js" />
         <item itemvalue="Node.js.post.js" />
         <item itemvalue="Node.js.Board.jsx" />
       </list>
@@ -80,10 +96,38 @@
       <workItem from="1643015601753" duration="5908000" />
       <workItem from="1643041038500" duration="1241000" />
       <workItem from="1643051923146" duration="5275000" />
+      <workItem from="1643143479536" duration="4868000" />
+      <workItem from="1643201705597" duration="14000" />
+      <workItem from="1643293229592" duration="5746000" />
+      <workItem from="1643322147816" duration="1247000" />
+      <workItem from="1643374512285" duration="4488000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$USER_HOME$/WebstormProjects/utils/recursiveSummer.js</url>
+          <line>26</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

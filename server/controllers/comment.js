@@ -1,42 +1,46 @@
-const Comment = require("../models/comment.js")
+
+
+
 const Post = require("../models/post.js")
+const {param, process_params} = require("express/lib/router");
 async function postComment(req , res){
     const {content , ownerImg, postId} = req.body
     try{
-        const newComment = new Comment({
-            content,
-            ownerImg,
-            postId
+        const currentPost = await Post.findById(postId)
+        currentPost.comments.push({
+            content , ownerImg
         })
-        await newComment.save()
-        return res.status(200).json({
-            message : "Comment created successfully"
+        await currentPost.save()
+        res.status(200).json({
+            data : currentPost
         })
-    }catch(er){
-        return res.status(404).json({
-            errorMessage : er.message
+    }catch (er){
+        res.status(404).json({
+            errorMessage: er.message
         })
     }
+
 }
 
 async function patchComment(req , res){
-    const commentId = req.body.commentId
-    Comment.findOne(commentId , async (er , comment) => {
+    const {commentId , postId , content} = req.body
+    const filter = `${postId}.comments.id`
+    const setter = `${postId}.comments.$.content`
+    await Post.findOneAndUpdate({[filter] : commentId}, {$set : {[setter] : content}}, {new : true} , (er , data) => {
         if(er){
-            return res.status(404).json({
-                errorMessage : "Comment not found"
+            console.log(er)
+        }else{
+            res.status(201).json({
+                data
             })
         }
-        comment.content = req.body.content
-        await comment.save()
-        return res.status(200).json({
-                message : "Successfully patched comment"
-        })
     })
 }
 
 async function deleteComment(req, res) {
-    Comment.findByIdAndDelete(req.body.commentId , (er , data) => {
+    const {postId , commentId} = req.body
+    const setter = ``
+    Post.findByIdAndUpdate({_id : postId} , {$pull : {comments : commentId}}, {new : true}, (er , data) => {
         if(er){
             return res.status(404).json({
                 errorMessage : er.message

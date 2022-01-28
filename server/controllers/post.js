@@ -1,5 +1,4 @@
 const Post = require("../models/post.js")
-const Comment = require("../models/comment.js")
 
 async function getPosts(req , res)  {
     const skip =  0

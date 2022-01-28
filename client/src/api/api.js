@@ -12,12 +12,12 @@ export default class Api{
          return await this.errorHandler("get" , null)
     }
 
-    async post(body){
+    async post(body){ // params are optional
         return await this.errorHandler("post" , body)
     }
 
-    async delete(body){
-        return  await this.errorHandler("delete" , body)
+    async delete(){
+        return  await this.errorHandler("delete")
     }
 
     async patch(body){

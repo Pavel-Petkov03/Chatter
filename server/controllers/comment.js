@@ -2,7 +2,8 @@
 const Post = require("../models/post.js")
 async function postComment(req , res){
     // todo make middleware for validating picture
-    const {content , ownerImg, postId} = req.body
+    const postId = req.params.postId
+    const {content , ownerImg} = req.body
     try{
         const currentPost = await Post.findById(postId)
         currentPost.comments.push({
@@ -21,7 +22,8 @@ async function postComment(req , res){
 }
 
 async function patchComment(req , res){
-    const {commentId , postId , content} = req.body
+    const {commentId , postId } = req.params
+    const {content} = req.body
     const filter = `${postId}.comments.id`
     const setter = `${postId}.comments.$.content`
     await Post.findOneAndUpdate({[filter] : commentId}, {$set : {[setter] : content}}, {new : true} , (er , data) => {
@@ -36,7 +38,7 @@ async function patchComment(req , res){
 }
 
 async function deleteComment(req, res) {
-    const {postId , commentId} = req.body
+    const {commentId , postId } = req.params
     Post.findByIdAndUpdate({_id : postId} , {$pull : {comments : commentId}}, {new : true}, (er , data) => {
         if(er){
             return res.status(404).json({

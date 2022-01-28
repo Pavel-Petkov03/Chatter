@@ -14,13 +14,26 @@ import {
     CLICK_COMMENT,
     EDIT_POST,
     GET_POST_SUCCESS,
-    GET_POST_FAILURE
-} 
+    GET_POST_FAILURE,
+    EDIT_COMMENT,
+    EDIT_COMMENT_SUCCESS,
+    EDIT_COMMENT_FAILURE,
+    CREATE_POST_SUCCESS,
+    CREATE_POST_FAILURE,
+    DELETE_COMMENT_SUCCESS,
+    DELETE_COMMENT_FAILURE,
+    SHOW_UP,
+    SHOW_DOWN,
+    SHOW_COMMENTS,
+    LIKE_COMMENT_SUCCESS,
+    LIKE_COMMENT_FAILURE,
+}
 from "./actionTypes.js"
 
 
 
-const initialState = {
+
+const postState = {
     editMode : false,
     errorMessage : "",
     clickedComment : false,
@@ -30,11 +43,22 @@ const initialState = {
 }
 
 
+const commentState = {
+    commentsArray : null,
+    displayShowDown :  null,  // comments.length > commentPaginationCount,
+    displayShowUp : false,
+    commentsCountLeft :  null , //comments.length - commentsArray.length,
+    allComments : null
+}
+
+const commentPaginationCount = 2
 
 
-export function postReducer(state = initialState, action){
+
+
+export function postReducer(state, action){
     switch (action.type){
-        // if correct api call the state is reseted
+        // if correct api call the state is reset
         case CREATE_COMMENT_SUCCESS :
         case EDIT_POST_SUCCESS :
         case DELETE_POST_SUCCESS :
@@ -86,14 +110,77 @@ export function postReducer(state = initialState, action){
         case GET_POST_SUCCESS:
             return {
                 ...state,
-                posts : {...action.data.posts , ...addState(state.posts)}
+                posts : {...action.data.posts , ...addState(state.posts, postState)}
+            }
+            // comments
+        case SHOW_COMMENTS: // this is setter of comments when post is rendered
+            const allComments = state.allComments || action.comments
+            const commentsArray = allComments.slice(0 , commentPaginationCount)
+            return {
+                ...state,
+                allComments,
+                commentsArray ,
+                displayShowDown : allComments.length > commentPaginationCount,
+                commentsCountLeft : allComments.length - commentsArray.length
+            }
+        case SHOW_DOWN :
+            return {
+                ...state ,
+                ...showDownAndUpChecker(state.commentsArray , state.allComments , "down")
+            }
+        case SHOW_UP :
+            return {
+                ...state ,
+                ...showDownAndUpChecker(state.commentsArray , state.allComments , "up")
+            }
+        case CREATE_COMMENT_SUCCESS :
+            state.allComments.push({...action.data})
+            return {
+                ...state,
+            }
+        case EDIT_COMMENT_SUCCESS:
+            return {
+                ...state
             }
         default : return state
     }
 }
 
-function addState(obj){
-    return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...v , initialState}}), {})
+function addState(obj, state){
+    return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...v , state}}), {})
 }
 
 
+
+
+
+
+
+
+
+
+
+
+function showDownAndUpChecker(stateComments , allComments , upOrDown){
+    let commentsArray
+    let displayShowDown = true
+    let displayShowUp = true
+    if(upOrDown === "down"){
+        commentsArray = allComments.slice(0 , stateComments.length + commentPaginationCount)
+    }else if(upOrDown === "up"){
+        commentsArray = allComments.slice(0 , stateComments.length - commentPaginationCount)
+    }
+
+
+    if(commentsArray.length <= 2){
+        displayShowUp = false
+    }else if(commentsArray.length === allComments.length){
+        displayShowDown = false
+    }
+    return {
+        commentsArray,
+        displayShowUp,
+        displayShowDown,
+        commentsCountLeft : allComments.length - commentsArray.length
+    }
+}

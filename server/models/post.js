@@ -10,6 +10,7 @@ const postSchema = new Schema({
     creationDate : {type : Date , default : Date.now()},
     comments : [
         {
+            _id : Schema.Types.ObjectId,
             userId : Schema.Types.ObjectId,
             content : String,
             likes : [

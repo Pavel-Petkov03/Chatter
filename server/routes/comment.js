@@ -12,3 +12,8 @@ router.patch("/:postId/:commentId" , verifyToken , commentsController.patchComme
 
 
 router.delete("/:postId/:commentId" , verifyToken , commentsController.deleteComment)
+
+
+module.exports = router
+
+

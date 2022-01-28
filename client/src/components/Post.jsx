@@ -10,14 +10,12 @@ import {
 import Picker from "emoji-picker-react"
 import Comment from "../components/Comment.jsx"
 import CustomHeart from "./CustomHeart"
-import { CLICK_COMMENT, EMOJI_CLICK, LIKE_POST_SUCCESS, LIKE_POST_FAILURE } from "../reducers/posts/actionTypes"
+import {
+    CLICK_COMMENT, EMOJI_CLICK, LIKE_POST_SUCCESS, LIKE_POST_FAILURE , SHOW_COMMENTS
+} from "../reducers/posts/actionTypes"
 import Api from "../api/api"
-import { LIKE_COMMENT_SUCCESS } from "../reducers/comments/actionTypes"
 import { useDispatch } from "react-redux"
 import store from "../reducers/rootReducer.js"
-import {
-    SHOW_UP , SHOW_DOWN, SHOW_COMMENTS
-} from "../reducers/comments/actionTypes.js"
 
 export default ({postData : [_id , {
     userImage , content , username , postImage, comments
@@ -67,16 +65,16 @@ export default ({postData : [_id , {
                 </div>
             </div>
             </> : null}
-            <section className="comment-section">
-                {postState.posts[_id].commentsArray}
-                <div className="arrows">
-                <div className="arrows-icons">
-                    {store.getState().comments.displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : comments})}/> : null}
-                    {store.getState().comments.displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : comments})}/> : null}
-                </div>
-                {store.getState().comments.commentsCountLeft !== 0 ? <p className="comments-left">{store.getState().comments.commentsCountLeft} comments left</p> : null}
-            </div>
-            </section>
+            {/*/!*<section className="comment-section">*!/*/}
+            {/*/!*    {postState.posts[_id].commentsArray}*!/*/}
+            {/*/!*    <div className="arrows">*!/*/}
+            {/*/!*    <div className="arrows-icons">*!/*/}
+            {/*/!*        {store.getState().comments.displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : comments})}/> : null}*!/*/}
+            {/*/!*        {store.getState().comments.displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : comments})}/> : null}*!/*/}
+            {/*/!*    </div>*!/*/}
+            {/*/!*    {store.getState().comments.commentsCountLeft !== 0 ? <p className="comments-left">{store.getState().comments.commentsCountLeft} comments left</p> : null}*!/*/}
+            {/*/!*</div>*!/*/}
+            {/*</section>*/}
         </article>
     )
 }

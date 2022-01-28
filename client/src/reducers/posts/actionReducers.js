@@ -56,7 +56,7 @@ const commentPaginationCount = 2
 
 
 
-export function postReducer(state, action){
+export function postReducer(state={posts : {}}, action){
     switch (action.type){
         // if correct api call the state is reset
         case CREATE_COMMENT_SUCCESS :

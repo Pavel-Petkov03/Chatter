@@ -62,7 +62,7 @@ export default ({postData : [_id , {
             </div>
             </> : null}
             <section className="comment-section">
-                {postState.posts[_id].commentsArray  ? Object.entries(postState.posts[_id].commentsArray).map(state => <Comment {...{state , props}} />)
+                {postState.posts[_id].comments  ? Object.entries(postState.posts[_id].comments).map(([commentId , data]) => <Comment {...{commentId , _id,...data, props : props.posts}} />)
                     : null}
             </section>
         </article>

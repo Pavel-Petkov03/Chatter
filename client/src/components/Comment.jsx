@@ -36,6 +36,7 @@ export default function Comment({commentId , postId,
                     </div>
                     {state.posts[postId].commentsCountLeft !== 0 ? <p className="comments-left">{state.posts[postId].commentsCountLeft} comments left</p> : null}
                     {/*todo make pagination*/}
+
                 </div>
             </div>
       </section>

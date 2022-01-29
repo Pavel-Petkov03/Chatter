@@ -35,6 +35,7 @@ export default function Comment({commentId , postId,
                         {state.posts[postId].paginationCounter * 2 >= 2 ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, postId})}/> : null}
                     </div>
                     {state.posts[postId].commentsCountLeft !== 0 ? <p className="comments-left">{state.posts[postId].commentsCountLeft} comments left</p> : null}
+                    {/*todo make pagination*/}
                 </div>
             </div>
       </section>

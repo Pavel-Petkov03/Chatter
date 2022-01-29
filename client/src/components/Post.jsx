@@ -23,7 +23,7 @@ export default ({postData : [_id , {
     const dispatch = useDispatch()
     const postState = props.posts.state
     const postCommentArea = useRef(null)
-
+    const paginationConstant =  2
 
     useEffect(() => {
         dispatch({type : SHOW_COMMENTS, comments, _id})
@@ -57,12 +57,14 @@ export default ({postData : [_id , {
                 <textarea ref={postCommentArea} className="comment-create"/>
                 <div className="post-tasks">
                     <FaRegLaughBeam  onClick={() => dispatch({type : EMOJI_CLICK, _id})}/>
-                    <FaArrowCircleRight className="post-comment"/>
+                    <FaArrowCircleRight className="post-comment" onClick={() => dispatch({type : "later"})}/>
                 </div>
             </div>
             </> : null}
             <section className="comment-section">
-                {postState.posts[_id].comments  ? Object.entries(postState.posts[_id].comments).map(([commentId , data]) => <Comment {...{commentId , _id,...data, props : props.posts}} />)
+                {postState.posts[_id].comments  ? Object.entries(postState.posts[_id].comments)
+                        .slice(0 , postState.posts[_id].paginationCounter * paginationConstant)
+                        .map(([commentId , data]) => <Comment {...{ commentId, postId : _id,...data, props : props.posts}} />)
                     : null}
             </section>
         </article>

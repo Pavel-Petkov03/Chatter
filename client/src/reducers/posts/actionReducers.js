@@ -39,7 +39,6 @@ const postState = {
     clickedComment : false,
     isEmojiFieldClicked : false,
     isLiked : false,
-    posts : {},
     paginationCounter  : 1
 }
 
@@ -103,9 +102,9 @@ export function postReducer(state={posts : {}}, action){ // posts is rendered fr
             }
         
         case GET_POST_SUCCESS:
+            state.posts =  {...state.posts , ...addState(action.data.posts, postState)}
             return {
                 ...state,
-                posts : {...action.data.posts , ...addState(state.posts, postState)}
             }
             // comments
         case SHOW_COMMENTS: // sets all the state of the comments in current post
@@ -145,5 +144,5 @@ export function postReducer(state={posts : {}}, action){ // posts is rendered fr
 }
 
 function addState(obj, state){
-    return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...v , ...state}}), {})
+    return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...{...v , ...state}}}), {})
 }

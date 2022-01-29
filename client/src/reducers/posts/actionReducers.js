@@ -39,21 +39,19 @@ const postState = {
     clickedComment : false,
     isEmojiFieldClicked : false,
     isLiked : false,
-    posts : {}
+    posts : {},
+    paginationCounter  : 1
 }
 
 
 const commentState = {
-    commentsCountLeft :  null , //comments.length - commentsArray.length,
-    paginationCounter  : 1
+    commentsCountLeft :  null ,
 }
 
-const commentPaginationCount = 2
 
 
 
-
-export function postReducer(state={posts : {}}, action){
+export function postReducer(state={posts : {}}, action){ // posts is rendered from GET_POSTS action payload func
     let currentPost
     switch (action.type){
         // if correct api call the state is reset
@@ -110,33 +108,29 @@ export function postReducer(state={posts : {}}, action){
                 posts : {...action.data.posts , ...addState(state.posts, postState)}
             }
             // comments
-        case SHOW_COMMENTS: // this is setter of comments when post is rendered
-            console.log(action)
+        case SHOW_COMMENTS: // sets all the state of the comments in current post
             currentPost = state.posts[action._id]
             currentPost.comments = Object
                 .entries(action.comments)
                 .reduce((acc , [_ , {_id , ...state}]) =>
                     Object.assign(acc , {[_id] : {...{...state , ...commentState}}}), {})
-            // postComments.commentsCountLeft = postComments.allComments.length - postComments.commentsArray.length
             return {
                 ...state,
             }
-
+        // pagination counter will be used in the component directly with pagination comment slicer
         case SHOW_DOWN :
-            state.posts[action.postId].comments[action.commentId].paginationCounter++
+            state.posts[action.postId].paginationCounter++
             return {
                 ...state ,
             }
         case SHOW_UP :
-            state.posts[action.postId].comments[action.commentId].paginationCounter--
+            state.posts[action.postId].paginationCounter--
             return {
                 ...state ,
             }
         case CREATE_COMMENT_SUCCESS :
         case  EDIT_COMMENT_SUCCESS  :
-            state.posts[action.postId].comments[action.commentId] = {
-                ...action.data
-            }
+            Object.assign(state.posts[action.postId].comments[action.commentId] , {...action.data})
             return {
                 ...state,
             }
@@ -151,5 +145,5 @@ export function postReducer(state={posts : {}}, action){
 }
 
 function addState(obj, state){
-    return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...v , state}}), {})
+    return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...v , ...state}}), {})
 }

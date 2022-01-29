@@ -44,11 +44,8 @@ const postState = {
 
 
 const commentState = {
-    commentsArray : null,
-    displayShowDown :  null,  // comments.length > commentPaginationCount,
-    displayShowUp : false,
     commentsCountLeft :  null , //comments.length - commentsArray.length,
-    allComments : null
+    paginationCounter  : 1
 }
 
 const commentPaginationCount = 2
@@ -116,30 +113,28 @@ export function postReducer(state={posts : {}}, action){
         case SHOW_COMMENTS: // this is setter of comments when post is rendered
             console.log(action)
             currentPost = state.posts[action._id]
-            currentPost.allComments = currentPost.allComments || addState(formatData(action.comments), commentState)
-            currentPost.commentsArray = Object.entries(currentPost.allComments).slice(0 , commentPaginationCount).
-            reduce((acc , [k , v]) => Object.assign(acc , {[k] : v}) , {})
-            currentPost.displayShowDown = currentPost.allComments.length > commentPaginationCount
-            currentPost.commentsCountLeft = currentPost.allComments.length - currentPost.commentsArray.length
+            currentPost.comments = Object
+                .entries(action.comments)
+                .reduce((acc , [_ , {_id , ...state}]) =>
+                    Object.assign(acc , {[_id] : {...{...state , ...commentState}}}), {})
+            // postComments.commentsCountLeft = postComments.allComments.length - postComments.commentsArray.length
             return {
                 ...state,
             }
 
         case SHOW_DOWN :
-            currentPost = state.posts[action._id]
-            Object.assign(currentPost , {...showDownAndUpChecker(state.commentsArray , state.allComments , "down")})
+            state.posts[action.postId].comments[action.commentId].paginationCounter++
             return {
                 ...state ,
             }
         case SHOW_UP :
-            currentPost = state.posts[action._id]
-            Object.assign(currentPost , {...showDownAndUpChecker(state.commentsArray , state.allComments , "up")})
+            state.posts[action.postId].comments[action.commentId].paginationCounter--
             return {
                 ...state ,
             }
         case CREATE_COMMENT_SUCCESS :
         case  EDIT_COMMENT_SUCCESS  :
-            state.posts[action._id].allComments[action._id] = {
+            state.posts[action.postId].comments[action.commentId] = {
                 ...action.data
             }
             return {
@@ -147,7 +142,7 @@ export function postReducer(state={posts : {}}, action){
             }
 
         case DELETE_COMMENT_SUCCESS :
-            delete state.posts[action._id].allComments[action._id]
+            delete state.posts[action._id].comments[action._id]
             return {
                 ...state
             }
@@ -157,37 +152,4 @@ export function postReducer(state={posts : {}}, action){
 
 function addState(obj, state){
     return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...v , state}}), {})
-}
-
-
-
-function showDownAndUpChecker(stateComments , allComments , upOrDown){
-    let commentsArray
-    let displayShowDown = true
-    let displayShowUp = true
-    if(upOrDown === "down"){
-        commentsArray = allComments.slice(0 , stateComments.length + commentPaginationCount)
-    }else if(upOrDown === "up"){
-        commentsArray = allComments.slice(0 , stateComments.length - commentPaginationCount)
-    }
-
-
-    if(commentsArray.length <= 2){
-        displayShowUp = false
-    }else if(commentsArray.length === allComments.length){
-        displayShowDown = false
-    }
-    return {
-        commentsArray,
-        displayShowUp,
-        displayShowDown,
-        commentsCountLeft : allComments.length - commentsArray.length
-    }
-}
-
-function formatData(array){
-    return array.reduce((acc , {_id , ...state}) => {
-        acc[_id] = state
-        return acc
-    }, {})
 }

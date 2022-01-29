@@ -3,15 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="34088fd5-d34d-422f-a5aa-a05d1d7b3e74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/comments.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/comments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/posts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Comment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Comment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Post.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/comments/actionReducers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/comments/actionTypes.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/posts/actionReducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/rootReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/rootReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

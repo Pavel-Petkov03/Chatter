@@ -5,7 +5,6 @@ import {
      EDIT_POST_SUCCESS , EDIT_POST_FAILURE,
      DELETE_POST_FAILURE, DELETE_POST_SUCCESS,
 
-
 } from "../reducers/posts/actionTypes"
 
 const api = new Api("http://localhost:5000/posts","application/json")

@@ -1,12 +1,13 @@
 
 import Api from "../api/api";
-import {CREATE_COMMENT_FAILURE, CREATE_COMMENT_SUCCESS} from "../reducers/posts/actionTypes";
 import {
-    DELETE_COMMENT_FAILURE,
-    DELETE_COMMENT_SUCCESS,
+    CREATE_COMMENT_FAILURE,
+    CREATE_COMMENT_SUCCESS,
+    EDIT_COMMENT_SUCCESS,
     EDIT_COMMENT_FAILURE,
-    EDIT_COMMENT_SUCCESS
-} from "../reducers/comments/actionTypes";
+    DELETE_COMMENT_FAILURE,
+    DELETE_COMMENT_SUCCESS
+} from "../reducers/posts/actionTypes";
 
 const api = new Api(null , "application.json")
 const endpoint  = "http://localhost:5000/comments/"

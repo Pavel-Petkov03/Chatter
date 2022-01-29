@@ -21,16 +21,12 @@ export default ({postData : [_id , {
     userImage , content , username , postImage, comments
 }] , props}) => {
     const dispatch = useDispatch()
-
     const postState = props.posts.state
-    const commentState = props.comments.state
-
-
     const postCommentArea = useRef(null)
 
 
     useEffect(() => {
-        dispatch({type : SHOW_COMMENTS, comments})
+        dispatch({type : SHOW_COMMENTS, comments, _id})
     }, []);
 
     const currentImg = userImage ? userImage  : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
@@ -65,16 +61,10 @@ export default ({postData : [_id , {
                 </div>
             </div>
             </> : null}
-            {/*/!*<section className="comment-section">*!/*/}
-            {/*/!*    {postState.posts[_id].commentsArray}*!/*/}
-            {/*/!*    <div className="arrows">*!/*/}
-            {/*/!*    <div className="arrows-icons">*!/*/}
-            {/*/!*        {store.getState().comments.displayShowDown ? <FaArrowDown onClick={() => dispatch({type : SHOW_DOWN, allComments : comments})}/> : null}*!/*/}
-            {/*/!*        {store.getState().comments.displayShowUp ? <FaArrowUp onClick={() => dispatch({type : SHOW_UP, allComments : comments})}/> : null}*!/*/}
-            {/*/!*    </div>*!/*/}
-            {/*/!*    {store.getState().comments.commentsCountLeft !== 0 ? <p className="comments-left">{store.getState().comments.commentsCountLeft} comments left</p> : null}*!/*/}
-            {/*/!*</div>*!/*/}
-            {/*</section>*/}
+            <section className="comment-section">
+                {postState.posts[_id].commentsArray  ? Object.entries(postState.posts[_id].commentsArray).map(state => <Comment {...{state , props}} />)
+                    : null}
+            </section>
         </article>
     )
 }

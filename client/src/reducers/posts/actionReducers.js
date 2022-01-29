@@ -57,9 +57,9 @@ const commentPaginationCount = 2
 
 
 export function postReducer(state={posts : {}}, action){
+    let currentPost
     switch (action.type){
         // if correct api call the state is reset
-        case CREATE_COMMENT_SUCCESS :
         case EDIT_POST_SUCCESS :
         case DELETE_POST_SUCCESS :
         case SAVE_POST_SUCCESS : 
@@ -114,31 +114,40 @@ export function postReducer(state={posts : {}}, action){
             }
             // comments
         case SHOW_COMMENTS: // this is setter of comments when post is rendered
-            const allComments = state.allComments || action.comments
-            const commentsArray = allComments.slice(0 , commentPaginationCount)
+            console.log(action)
+            currentPost = state.posts[action._id]
+            currentPost.allComments = currentPost.allComments || addState(formatData(action.comments), commentState)
+            currentPost.commentsArray = Object.entries(currentPost.allComments).slice(0 , commentPaginationCount).
+            reduce((acc , [k , v]) => Object.assign(acc , {[k] : v}) , {})
+            currentPost.displayShowDown = currentPost.allComments.length > commentPaginationCount
+            currentPost.commentsCountLeft = currentPost.allComments.length - currentPost.commentsArray.length
             return {
                 ...state,
-                allComments,
-                commentsArray ,
-                displayShowDown : allComments.length > commentPaginationCount,
-                commentsCountLeft : allComments.length - commentsArray.length
             }
+
         case SHOW_DOWN :
+            currentPost = state.posts[action._id]
+            Object.assign(currentPost , {...showDownAndUpChecker(state.commentsArray , state.allComments , "down")})
             return {
                 ...state ,
-                ...showDownAndUpChecker(state.commentsArray , state.allComments , "down")
             }
         case SHOW_UP :
+            currentPost = state.posts[action._id]
+            Object.assign(currentPost , {...showDownAndUpChecker(state.commentsArray , state.allComments , "up")})
             return {
                 ...state ,
-                ...showDownAndUpChecker(state.commentsArray , state.allComments , "up")
             }
         case CREATE_COMMENT_SUCCESS :
-            state.allComments.push({...action.data})
+        case  EDIT_COMMENT_SUCCESS  :
+            state.posts[action._id].allComments[action._id] = {
+                ...action.data
+            }
             return {
                 ...state,
             }
-        case EDIT_COMMENT_SUCCESS:
+
+        case DELETE_COMMENT_SUCCESS :
+            delete state.posts[action._id].allComments[action._id]
             return {
                 ...state
             }
@@ -149,15 +158,6 @@ export function postReducer(state={posts : {}}, action){
 function addState(obj, state){
     return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...v , state}}), {})
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -183,4 +183,11 @@ function showDownAndUpChecker(stateComments , allComments , upOrDown){
         displayShowDown,
         commentsCountLeft : allComments.length - commentsArray.length
     }
+}
+
+function formatData(array){
+    return array.reduce((acc , {_id , ...state}) => {
+        acc[_id] = state
+        return acc
+    }, {})
 }

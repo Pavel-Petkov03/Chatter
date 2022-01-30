@@ -17,7 +17,7 @@ export default function Comment({commentId , postId,
             <div className="comment-profile-info">
               <div className="comment-first-row">
                 <div className="comment-profile-info-box">
-                  <img className="comment-profile-pick" src={1} alt="profile picture"/>
+                  <img className="comment-profile-pick" src={"https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"} alt="profile picture"/>
                   <h2 className="username">{1}</h2>
                 </div>
                 <span >{1}</span>
@@ -36,7 +36,6 @@ export default function Comment({commentId , postId,
                     </div>
                     {state.posts[postId].commentsCountLeft !== 0 ? <p className="comments-left">{state.posts[postId].commentsCountLeft} comments left</p> : null}
                     {/*todo make pagination*/}
-
                 </div>
             </div>
       </section>

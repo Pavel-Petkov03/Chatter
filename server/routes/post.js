@@ -7,7 +7,7 @@ const {authenticateEntries} = require("../middlewares/auth.js")
 
 
 
-router.get("/", verifyToken, postController.getPosts)
+router.get("/", postController.getPosts)
 
 
 router.post("/", (req , res , next) => {

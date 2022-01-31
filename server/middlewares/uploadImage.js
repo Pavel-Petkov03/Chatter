@@ -1,5 +1,5 @@
 const cloudinary = require("../config/cloudinary.js")
-
+const multer = require("multer")
 
 async function fileUpload(req , res, next){
     ```// this function is triggered in every file upload
@@ -23,6 +23,6 @@ async function fileUpload(req , res, next){
     } )
 }
 
-module.exports = {
-    fileUpload
-}
+
+module.exports = fileUpload
+

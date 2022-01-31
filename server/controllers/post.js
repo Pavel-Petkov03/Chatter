@@ -3,7 +3,7 @@ const Post = require("../models/post.js")
 async function getPosts(req , res)  {
     const skip =  0
     const limit = 10
-    Post.find().sort({creationDate : -1}).limit(limit).skip(skip).lean().exec((error , data) => {
+    Post.find().sort({creationDate : -1}).populate("ownerId").limit(limit).skip(skip).lean().exec((error , data) => {
         if(error){
             console.log(error)
         }else{
@@ -23,13 +23,15 @@ function formatData(array){
 }
 
 async function createPost (req, res)  {
-    const {content , userImage, postImage } = req.body
+    const {content , postImage } = req.body
+    const ownerImage = req.pictureParams.secure_url || 1
     // the pictures will be saved in cloud later
     // THIS IS ONLY FOR DEBUGGING
     const post = new Post({
         content,
-        userImage,
-        postImage
+        ownerImage,
+        postImage,
+        ownerId : req.user.sub
     })
     await post.save()
     res.json({
@@ -75,3 +77,4 @@ module.exports = {
     getPosts,
     createPost
 }
+

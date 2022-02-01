@@ -145,4 +145,5 @@ export function postReducer(state={posts : {}}, action){ // posts is rendered fr
 
 function addState(obj, state){
     return Object.entries(obj).reduce((acc , [k , v]) => Object.assign(acc , {[k] : {...{...v , ...state}}}), {})
+    // change
 }

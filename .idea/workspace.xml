@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34088fd5-d34d-422f-a5aa-a05d1d7b3e74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/config/multer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middlewares/uploadImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middlewares/uploadImage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +106,10 @@
       <workItem from="1643374512285" duration="9934000" />
       <workItem from="1643464486880" duration="3313000" />
       <workItem from="1643540594023" duration="9995000" />
-      <workItem from="1643585828795" duration="1377000" />
+      <workItem from="1643585828795" duration="1457000" />
+      <workItem from="1643715723871" duration="5568000" />
+      <workItem from="1643744744490" duration="34000" />
+      <workItem from="1643744788504" duration="1121000" />
     </task>
     <servers />
   </component>
